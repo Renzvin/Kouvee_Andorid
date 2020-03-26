@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_produk"
+            android:icon="@drawable/buttonproduk"
+            android:title="Produk" />
+        <item
+            android:id="@+id/nav_layanan"
+            android:icon="@drawable/buttonlayanan"
+            android:title="Layanan" />
+        <item
+            android:id="@+id/nav_data"
+            android:icon="@drawable/database_solid"
+            android:title="Data" />
+        <item
+            android:id="@+id/nav_customer"
+            android:icon="@drawable/customer"
+            android:title="Customer" />
+        <item
+            android:id="@+id/nav_pemesanan"
+            android:icon="@drawable/laporan"
+            android:title="Pemesanan" />
+        <item
+            android:id="@+id/nav_struk"
+            android:icon="@drawable/struk"
+            android:title="Struk" />
+    </group>
+</menu>

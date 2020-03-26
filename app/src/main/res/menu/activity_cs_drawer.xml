@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_cs_produk"
+            android:icon="@drawable/buttonproduk"
+            android:title="Produk" />
+        <item
+            android:id="@+id/nav_cs_layanan"
+            android:icon="@drawable/buttonlayanan"
+            android:title="Layanan" />
+        <item
+            android:id="@+id/nav_cs_hewan"
+            android:icon="@drawable/buttonukuranhewan"
+            android:title="Hewan" />
+        <item
+            android:id="@+id/nav_cs_customer"
+            android:icon="@drawable/customer"
+            android:title="Customer" />
+    </group>
+</menu>

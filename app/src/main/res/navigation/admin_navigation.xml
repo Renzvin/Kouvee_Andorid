@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_produk">
+
+    <fragment
+        android:id="@+id/nav_pemesanan"
+        android:name="com.app.p3l.ui.pemesanan.PemesananFragment"
+        android:label="Pemesanan"
+        tools:layout="@layout/fragment_pemesanan" />
+    <fragment
+        android:id="@+id/nav_produk"
+        android:name="com.app.p3l.ui.produk.ProdukFragment"
+        android:label="Produk"
+        tools:layout="@layout/fragment_produk">
+
+        <action
+            android:id="@+id/action_HomeFragment_to_HomeSecondFragment"
+            app:destination="@id/nav_home_second" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_home_second"
+        android:name="com.app.p3l.ui.produk.ProdukFragment"
+        android:label="@string/home_second"
+        tools:layout="@layout/fragment_produk">
+        <action
+            android:id="@+id/action_HomeSecondFragment_to_HomeFragment"
+            app:destination="@id/nav_produk" />
+
+        <argument
+            android:name="myArg"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_layanan"
+        android:name="com.app.p3l.ui.layanan.LayananFragment"
+        android:label="Layanan"
+        tools:layout="@layout/fragment_layanan" />
+
+    <fragment
+        android:id="@+id/nav_data"
+        android:name="com.app.p3l.ui.data.DataFragment"
+        android:label="Data"
+        tools:layout="@layout/fragment_data" />
+    <fragment
+        android:id="@+id/nav_customer"
+        android:name="com.app.p3l.ui.customer.CustomerFragment"
+        android:label="Customer"
+        tools:layout="@layout/fragment_customer" />
+    <fragment
+        android:id="@+id/nav_struk"
+        android:name="com.app.p3l.ui.struk.StrukFragment"
+        android:label="Struk"
+        tools:layout="@layout/fragment_struk" />
+</navigation>

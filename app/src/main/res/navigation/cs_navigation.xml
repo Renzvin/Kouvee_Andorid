@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cs_navigation"
+    app:startDestination="@id/nav_cs_produk">
+    <fragment
+        android:id="@+id/nav_cs_produk"
+        android:name="com.app.p3l.ui.produk_cs.ProdukCSFragment"
+        android:label="Produk"
+        tools:layout="@layout/fragment_cs_produk" />
+    <fragment
+        android:id="@+id/nav_cs_layanan"
+        android:name="com.app.p3l.ui.layanan_cs.LayananCSFragment"
+        android:label="Layanan"
+        tools:layout="@layout/fragment_cs_layanan" />
+    <fragment
+        android:id="@+id/nav_cs_customer"
+        android:name="com.app.p3l.ui.customer_cs.CustomerCSFragment"
+        android:label="Customer"
+        tools:layout="@layout/fragment_cs_customer" />
+    <fragment
+        android:id="@+id/nav_cs_hewan"
+        android:name="com.app.p3l.ui.hewan_cs.HewanCSFragment"
+        android:label="Hewan"
+        tools:layout="@layout/fragment_cs_hewan" />
+</navigation>
