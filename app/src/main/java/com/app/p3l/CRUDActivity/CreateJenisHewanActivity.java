@@ -63,7 +63,7 @@ public class CreateJenisHewanActivity extends AppCompatActivity {
                             System.out.println("Message  : " + message);
 
 
-                            Toast.makeText(CreateJenisHewanActivity.this,"Sukses Mengubah Data Ukuran",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(CreateJenisHewanActivity.this,"Sukses Menambah Data Jenis",Toast.LENGTH_SHORT).show();
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -72,7 +72,7 @@ public class CreateJenisHewanActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(CreateJenisHewanActivity.this,"Gagal Mengubah Data Ukuran",Toast.LENGTH_SHORT).show();
+                Toast.makeText(CreateJenisHewanActivity.this,"Gagal Menambah Data Jenis",Toast.LENGTH_SHORT).show();
             }
         })
         {
