@@ -31,10 +31,10 @@
             android:textColorHint="#000000"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.937"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.674" />
+            app:layout_constraintVertical_bias="0.664" />
 
         <TextView
             android:id="@+id/desc_p_created"
@@ -47,10 +47,10 @@
             android:textColorHint="#000000"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.937"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.608" />
+            app:layout_constraintVertical_bias="0.604" />
 
         <TextView
             android:id="@+id/desc_p_status"
@@ -63,15 +63,15 @@
             android:textColorHint="#000000"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.397"
+            app:layout_constraintHorizontal_bias="0.343"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.539" />
+            app:layout_constraintVertical_bias="0.52" />
 
         <TextView
             android:id="@+id/desc_p_kategori"
-            android:layout_width="61dp"
-            android:layout_height="20dp"
+            android:layout_width="85dp"
+            android:layout_height="19dp"
             android:ems="10"
             android:hint="Nama : "
             android:inputType="text"
@@ -79,10 +79,10 @@
             android:textColorHint="#000000"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.397"
+            app:layout_constraintHorizontal_bias="0.373"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.467" />
+            app:layout_constraintVertical_bias="0.449" />
 
         <TextView
             android:id="@+id/desc_p_harga"
@@ -134,7 +134,7 @@
 
         <TextView
             android:id="@+id/Kategori"
-            android:layout_width="65dp"
+            android:layout_width="61dp"
             android:layout_height="17dp"
             android:ems="10"
             android:hint="Kategori : "
@@ -178,11 +178,11 @@
             app:layout_constraintHorizontal_bias="0.177"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.69" />
+            app:layout_constraintVertical_bias="0.676" />
 
         <TextView
             android:id="@+id/creared"
-            android:layout_width="141dp"
+            android:layout_width="146dp"
             android:layout_height="22dp"
             android:ems="10"
             android:hint="Dibuat pada tanggal : "
@@ -194,7 +194,7 @@
             app:layout_constraintHorizontal_bias="0.177"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.612" />
+            app:layout_constraintVertical_bias="0.602" />
 
         <TextView
             android:id="@+id/Stock"
@@ -226,7 +226,7 @@
             app:layout_constraintHorizontal_bias="0.125"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.25" />
+            app:layout_constraintVertical_bias="0.235" />
 
         <TextView
             android:id="@+id/Harga"
