@@ -29,19 +29,23 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.app.p3l.DAO.Kategori_ProdukDAO;
 import com.app.p3l.DAO.ProdukDAO;
 import com.app.p3l.Endpoints.VolleyMultiPartRequest;
 import com.app.p3l.R;
 import com.google.api.LogDescriptor;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class EditProdukActivity extends AppCompatActivity implements View.OnClickListener{
@@ -56,8 +60,12 @@ public class EditProdukActivity extends AppCompatActivity implements View.OnClic
     String status = "-";
     String message = "-";
     String kat = "1";
+    String data = "-";
 
     private final int IMG_REQUEST = 1;
+
+    List<Kategori_ProdukDAO> kategori_produkDAOS = new ArrayList<>();
+    List<String> temp = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,22 +77,20 @@ public class EditProdukActivity extends AppCompatActivity implements View.OnClic
         gambar = (Button) findViewById(R.id.edit_P_foto);
         image = (ImageView) findViewById(R.id.edit_imageProduk);
         kategori = (Spinner) findViewById(R.id.edit_spinner_produk);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(EditProdukActivity.this,R.array.kategori_produk, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        kategori.setAdapter(adapter);
+        setSpinner();
         kategori.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                kat = adapterView.getItemAtPosition(i).toString();
-                if(kat.equalsIgnoreCase("Makanan")){
-                    kat = "1";
-                } else {
-                    kat = "2";
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                kat = parent.getItemAtPosition(position).toString();
+                for(int count=0;count<kategori_produkDAOS.size();count++){
+                    if(kat.equalsIgnoreCase(kategori_produkDAOS.get(count).getNama())){
+                        kat = Integer.toString(kategori_produkDAOS.get(count).getId());
+                    }
                 }
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
+            public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });
@@ -157,6 +163,51 @@ public class EditProdukActivity extends AppCompatActivity implements View.OnClic
             width = (int) (height * bitmapRatio);
         }
         return Bitmap.createScaledBitmap(image, width, height, true);
+    }
+
+    private void setSpinner(){
+        String url = "http://renzvin.com/kouvee/api/KategoriProduk/";
+        RequestQueue queue = Volley.newRequestQueue(EditProdukActivity.this);
+
+        StringRequest getRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+
+                            status = jsonObject.getString("status");
+                            data = jsonObject.getString("data");
+                            System.out.println("Response : " + status);
+                            System.out.println("Message  : " + data);
+
+
+                            String produks = jsonObject.getString("data");
+                            JSONArray jsonArray = new JSONArray(produks);
+
+                            for(int i = 0; i<jsonArray.length(); i++) {
+                                JSONObject obj = jsonArray.getJSONObject(i);
+                                Kategori_ProdukDAO pro = new Kategori_ProdukDAO(obj.getString("nama"), obj.getInt("id"));
+                                kategori_produkDAOS.add(pro);
+                            }
+                            for (int i = 0; i < kategori_produkDAOS.size(); i++){
+                                temp.add(kategori_produkDAOS.get(i).getNama().toString());
+                            }
+                            ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(EditProdukActivity.this, android.R.layout.simple_spinner_item,temp);
+                            spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                            kategori.setAdapter(spinnerArrayAdapter);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(EditProdukActivity.this,"Gagal Fetch Data",Toast.LENGTH_SHORT).show();
+                    }
+                });
+        queue.add(getRequest);
     }
 
     private void Create(final String nama, final String stock, final String harga, final String kategori,final Bitmap bitmap) {

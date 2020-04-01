@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,16 +19,18 @@ import java.util.List;
 
 public class LayananCSAdapter extends RecyclerView.Adapter<LayananCSAdapter.LayananView> {
     List<LayananDAO> layanan ;
-
-    public LayananCSAdapter(Context applicationContext, List<LayananDAO> produk) {
-        this.layanan = produk;
+    private Context context;
+    public LayananCSAdapter(Context context, List<LayananDAO> layanan) {
+        this.context = context;
+        this.layanan = layanan;
     }
 
     @NonNull
     @Override
     public LayananView onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_cs_layanan,parent,false);
-        return new LayananView(view);
+        View view = LayoutInflater.from(context).inflate(R.layout.fragment_cs_layanan,parent,false);
+        final LayananCSAdapter.LayananView LayananHolder = new LayananCSAdapter.LayananView(view);
+        return LayananHolder;
     }
 
     @Override
@@ -47,11 +50,13 @@ public class LayananCSAdapter extends RecyclerView.Adapter<LayananCSAdapter.Laya
     public class LayananView extends RecyclerView.ViewHolder {
         ImageView Image;
         TextView Title,Price;
+        LinearLayout parent;
         public LayananView(@NonNull View itemView) {
             super(itemView);
             Image = (ImageView)itemView.findViewById(R.id.Layanan_CS_Image);
             Title = (TextView)itemView.findViewById(R.id.Layanan_CS_Title);
             Price = (TextView)itemView.findViewById(R.id.Layanan_CS_Harga);
+            parent = (LinearLayout)itemView.findViewById(R.id.Layanan_CS_Parent);
         }
     }
 }

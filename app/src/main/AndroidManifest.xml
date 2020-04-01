@@ -71,6 +71,12 @@
         <activity android:name=".CRUDActivity.EditJenisHewanActivity">
 
         </activity>
+        <activity android:name=".Activity.DescProdukActivity">
+
+        </activity>
+        <activity android:name=".Activity.DescLayananActivity">
+
+        </activity>
     </application>
 
 </manifest>

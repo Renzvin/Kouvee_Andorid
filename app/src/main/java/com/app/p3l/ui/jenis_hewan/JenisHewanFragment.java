@@ -68,7 +68,7 @@ public class JenisHewanFragment extends Fragment {
             }
         });
         new ItemTouchHelper(supplierMoveCallback).attachToRecyclerView(jenisRecycler);
-        getSupplier();
+        getJenis();
     }
 
     ItemTouchHelper.SimpleCallback supplierMoveCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
@@ -86,7 +86,7 @@ public class JenisHewanFragment extends Fragment {
     };
 
 
-    private void getSupplier() {
+    private void getJenis() {
         String url = "http://renzvin.com/kouvee/api/JenisHewan/";
         RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
 

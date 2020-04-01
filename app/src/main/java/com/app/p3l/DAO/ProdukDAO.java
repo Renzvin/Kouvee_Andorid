@@ -1,8 +1,24 @@
 package com.app.p3l.DAO;
 
 public class ProdukDAO {
-    String nama,link_gambar,deleted_at;
+    String nama,link_gambar,deleted_at,created_at,edited_at;
     int stock,harga,kategori_id,id;
+
+    public String getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
+    }
+
+    public String getEdited_at() {
+        return edited_at;
+    }
+
+    public void setEdited_at(String edited_at) {
+        this.edited_at = edited_at;
+    }
 
     public String getNama() {
         return nama;
@@ -60,9 +76,12 @@ public class ProdukDAO {
         this.id = id;
     }
 
-    public ProdukDAO(String nama, String link_gambar, int stock, int harga, int kategori_id,int id) {
+    public ProdukDAO(String nama, String link_gambar, String deleted_at, String created_at, String edited_at, int stock, int harga, int kategori_id, int id) {
         this.nama = nama;
         this.link_gambar = link_gambar;
+        this.deleted_at = deleted_at;
+        this.created_at = created_at;
+        this.edited_at = edited_at;
         this.stock = stock;
         this.harga = harga;
         this.kategori_id = kategori_id;

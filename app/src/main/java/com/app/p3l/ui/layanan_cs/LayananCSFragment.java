@@ -48,8 +48,8 @@ public class LayananCSFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v =  inflater.inflate(R.layout.recycle, container, false);
         dataRecycler =  (RecyclerView) v.findViewById(R.id.recycler);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity().getApplicationContext(),4);
-        layananAdapter = new LayananCSAdapter(getActivity().getApplicationContext(), layanan);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),4);
+        layananAdapter = new LayananCSAdapter(getContext(), layanan);
         dataRecycler.setLayoutManager(gridLayoutManager);
         dataRecycler.setAdapter(layananAdapter);
 
@@ -81,7 +81,7 @@ public class LayananCSFragment extends Fragment {
                                 JSONObject obj = jsonArray.getJSONObject(i);
                                 if(obj.getString("deleted_at").equalsIgnoreCase("null")){
                                     LayananDAO lay = new LayananDAO(obj.getString("nama"),
-                                            obj.getString("link_gambar"), obj.getInt("harga"),obj.getInt("id"));
+                                            obj.getString("link_gambar"), obj.getString("created_at"), obj.getString("updated_at"), obj.getInt("harga"),obj.getInt("id"));
                                     layanan.add(lay);
                                 }
                             }

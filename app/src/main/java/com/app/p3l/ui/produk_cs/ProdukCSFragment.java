@@ -48,7 +48,7 @@ public class ProdukCSFragment extends Fragment {
         View v =  inflater.inflate(R.layout.recycle, container, false);
         produkRecycler =  (RecyclerView) v.findViewById(R.id.recycler);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity().getApplicationContext(),4);
-        produkAdapter = new ProdukCSAdapter(getActivity().getApplicationContext(), produk);
+        produkAdapter = new ProdukCSAdapter(getContext(), produk);
         produkRecycler.setLayoutManager(gridLayoutManager);
         produkRecycler.setAdapter(produkAdapter);
 
@@ -80,7 +80,7 @@ public class ProdukCSFragment extends Fragment {
                                 JSONObject obj = jsonArray.getJSONObject(i);
                                 if (obj.getString("deleted_at").equalsIgnoreCase("null")) {
                                     ProdukDAO pro = new ProdukDAO(obj.getString("nama"),
-                                            obj.getString("link_gambar"),obj.getInt("stock"), obj.getInt("harga"),obj.getInt("kategori_id"),obj.getInt("id"));
+                                            obj.getString("link_gambar"),obj.getString("deleted_at"),obj.getString("created_at"),obj.getString("updated_at"),obj.getInt("stock"), obj.getInt("harga"),obj.getInt("kategori_id"),obj.getInt("id"));
                                     produk.add(pro);
                                 }
                             }

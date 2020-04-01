@@ -85,7 +85,7 @@ public class EditLayananFragment extends Fragment {
                                 JSONObject obj = jsonArray.getJSONObject(i);
                                 if (obj.getString("deleted_at").equalsIgnoreCase("null")) {
                                     LayananDAO lay = new LayananDAO(obj.getString("nama"),
-                                            obj.getString("link_gambar"),  obj.getInt("harga"), obj.getInt("id"));
+                                            obj.getString("link_gambar"), obj.getString("created_at"), obj.getString("updated_at"), obj.getInt("harga"),obj.getInt("id"));
                                     layanan.add(lay);
                                 }
                             }

@@ -84,11 +84,10 @@ public class EditProdukFragment extends Fragment {
                                 JSONObject obj = jsonArray.getJSONObject(i);
                                 if (obj.getString("deleted_at").equalsIgnoreCase("null")) {
                                     ProdukDAO pro = new ProdukDAO(obj.getString("nama"),
-                                            obj.getString("link_gambar"),obj.getInt("stock"), obj.getInt("harga"),obj.getInt("kategori_id"),obj.getInt("id"));
+                                            obj.getString("link_gambar"),obj.getString("deleted_at"),obj.getString("created_at"),obj.getString("updated_at"),obj.getInt("stock"), obj.getInt("harga"),obj.getInt("kategori_id"),obj.getInt("id"));
                                     produk.add(pro);
                                 }
                             }
-
                             produkAdapter.notifyDataSetChanged();
                         } catch (JSONException e) {
                             e.printStackTrace();
