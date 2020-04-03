@@ -8,9 +8,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -57,8 +60,35 @@ public class EditLayananFragment extends Fragment {
         layananAdapter = new EditLayananAdapter(layanan,getContext());
         layananRecycler.setLayoutManager(gridLayoutManager);
         layananRecycler.setAdapter(layananAdapter);
+        EditText search = getView().findViewById(R.id.search_bar);
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                filter(s.toString());
+            }
+        });
 
         getLayanan();
+    }
+
+    private void filter(String search){
+        List<LayananDAO> example = new ArrayList<>();
+        for(LayananDAO temp : layanan){
+            if (temp.getNama().toLowerCase().contains(search.toLowerCase())){
+                example.add(temp);
+            }
+        }
+        layananAdapter.filterList(example);
     }
 
     private void getLayanan() {

@@ -1,9 +1,12 @@
 package com.app.p3l.ui.CRUDdata;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -56,8 +59,35 @@ public class EditSupplierFragment extends Fragment {
         supplierAdapter = new EditSupplierAdapter(supplier, getContext());
         supplierRecycler.setLayoutManager(manager);
         supplierRecycler.setAdapter(supplierAdapter);
+        EditText search = getView().findViewById(R.id.search_bar);
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                filter(s.toString());
+            }
+        });
 
         getSupplier();
+    }
+
+    private void filter(String search){
+        List<SupplierDAO> example = new ArrayList<>();
+        for(SupplierDAO temp : supplier){
+            if (temp.getNama().toLowerCase().contains(search.toLowerCase())){
+                example.add(temp);
+            }
+        }
+        supplierAdapter.filterList(example);
     }
 
     private void getSupplier() {

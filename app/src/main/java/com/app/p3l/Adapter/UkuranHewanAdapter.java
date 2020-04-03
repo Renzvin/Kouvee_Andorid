@@ -21,6 +21,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.app.p3l.CRUDActivity.EditUkuranHewanActivity;
 import com.app.p3l.DAO.Jenis_HewanDAO;
+import com.app.p3l.DAO.LayananDAO;
 import com.app.p3l.DAO.Ukuran_HewanDAO;
 import com.app.p3l.R;
 
@@ -122,6 +123,11 @@ public class UkuranHewanAdapter extends  RecyclerView.Adapter<UkuranHewanAdapter
     @Override
     public int getItemCount() {
         return ukuran.size();
+    }
+
+    public void filterList(List<Ukuran_HewanDAO> filteredList){
+        ukuran = filteredList;
+        notifyDataSetChanged();
     }
 
     public class UkuranView extends RecyclerView.ViewHolder {

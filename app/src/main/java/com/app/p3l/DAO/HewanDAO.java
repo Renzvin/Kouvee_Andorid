@@ -3,9 +3,8 @@ package com.app.p3l.DAO;
 import java.util.Date;
 
 public class HewanDAO {
-    String nama;
-    int ukuran_id,jenis_id,pegawai_id;
-    Date tanggal_lahir;
+    String nama,tanggal_lahir;
+    int ukuran_id,jenis_id,pegawai_id,id;
 
     public String getNama() {
         return nama;
@@ -13,6 +12,14 @@ public class HewanDAO {
 
     public void setNama(String nama) {
         this.nama = nama;
+    }
+
+    public String getTanggal_lahir() {
+        return tanggal_lahir;
+    }
+
+    public void setTanggal_lahir(String tanggal_lahir) {
+        this.tanggal_lahir = tanggal_lahir;
     }
 
     public int getUkuran_id() {
@@ -31,6 +38,14 @@ public class HewanDAO {
         this.jenis_id = jenis_id;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public int getPegawai_id() {
         return pegawai_id;
     }
@@ -39,11 +54,12 @@ public class HewanDAO {
         this.pegawai_id = pegawai_id;
     }
 
-    public Date getTanggal_lahir() {
-        return tanggal_lahir;
-    }
-
-    public void setTanggal_lahir(Date tanggal_lahir) {
+    public HewanDAO(String nama, String tanggal_lahir, int ukuran_id, int jenis_id, int pegawai_id,int id) {
+        this.nama = nama;
         this.tanggal_lahir = tanggal_lahir;
+        this.ukuran_id = ukuran_id;
+        this.jenis_id = jenis_id;
+        this.pegawai_id = pegawai_id;
+        this.id = id;
     }
 }

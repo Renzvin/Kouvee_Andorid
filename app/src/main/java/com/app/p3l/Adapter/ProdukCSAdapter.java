@@ -62,6 +62,11 @@ public class ProdukCSAdapter extends RecyclerView.Adapter<ProdukCSAdapter.Produk
         return produk.size();
     }
 
+    public void filterList(List<ProdukDAO> filteredList){
+        produk = filteredList;
+        notifyDataSetChanged();
+    }
+
     public class ProdukView extends RecyclerView.ViewHolder {
         ImageView Image;
         TextView Title,Price;

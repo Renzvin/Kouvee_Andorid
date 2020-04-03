@@ -12,6 +12,7 @@ import com.app.p3l.R;
 import com.app.p3l.ui.CRUDdata.CreateProdukFragment;
 import com.app.p3l.ui.CRUDdata.DeleteProdukFragment;
 import com.app.p3l.ui.CRUDdata.EditProdukFragment;
+import com.app.p3l.ui.hewan.HewanFragment;
 import com.app.p3l.ui.jenis_hewan.JenisHewanFragment;
 import com.app.p3l.ui.ukuran_hewan.UkuranHewanFragment;
 
@@ -31,7 +32,7 @@ public class SectionHewanPagerAdapter extends FragmentPagerAdapter {
         Fragment fragment = null;
         switch(position){
             case 0:
-                fragment = new JenisHewanFragment();
+                fragment = new HewanFragment();
                 break;
             case 1:
                 fragment = new JenisHewanFragment();

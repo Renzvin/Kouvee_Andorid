@@ -2,9 +2,12 @@ package com.app.p3l.ui.ukuran_hewan;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,6 +25,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.app.p3l.Adapter.UkuranHewanAdapter;
 import com.app.p3l.CRUDActivity.CreateUkuranHewanActivity;
+import com.app.p3l.DAO.LayananDAO;
 import com.app.p3l.DAO.Ukuran_HewanDAO;
 import com.app.p3l.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -68,7 +72,34 @@ public class UkuranHewanFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        EditText search = getView().findViewById(R.id.search_bar);
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                filter(s.toString());
+            }
+        });
         getSupplier();
+    }
+
+    private void filter(String search){
+        List<Ukuran_HewanDAO> example = new ArrayList<>();
+        for(Ukuran_HewanDAO temp : ukuran){
+            if (temp.getNama().toLowerCase().contains(search.toLowerCase())){
+                example.add(temp);
+            }
+        }
+        ukuranAdapter.filterList(example);
     }
 
     ItemTouchHelper.SimpleCallback supplierMoveCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {

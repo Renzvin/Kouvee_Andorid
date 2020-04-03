@@ -8,9 +8,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -22,6 +25,7 @@ import com.android.volley.toolbox.Volley;
 import com.app.p3l.Adapter.DeleteLayananAdapter;
 import com.app.p3l.Adapter.ProdukAdapter;
 import com.app.p3l.DAO.LayananDAO;
+import com.app.p3l.DAO.ProdukDAO;
 import com.app.p3l.R;
 
 import org.json.JSONArray;
@@ -50,9 +54,36 @@ public class DeleteLayananFragment extends Fragment {
         layananAdapter = new DeleteLayananAdapter(layanan,getActivity().getApplicationContext());
         layananRecycler.setLayoutManager(gridLayoutManager);
         layananRecycler.setAdapter(layananAdapter);
+        EditText search = v.findViewById(R.id.search_bar);
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                filter(s.toString());
+            }
+        });
 
         getLayanan();
         return v;
+    }
+
+    private void filter(String search){
+        List<LayananDAO> example = new ArrayList<>();
+        for(LayananDAO temp : layanan){
+            if (temp.getNama().toLowerCase().contains(search.toLowerCase())){
+                example.add(temp);
+            }
+        }
+        layananAdapter.filterList(example);
     }
 
     private void getLayanan() {

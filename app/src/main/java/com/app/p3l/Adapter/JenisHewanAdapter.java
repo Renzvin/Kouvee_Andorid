@@ -21,6 +21,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.app.p3l.CRUDActivity.EditJenisHewanActivity;
 import com.app.p3l.DAO.Jenis_HewanDAO;
+import com.app.p3l.DAO.LayananDAO;
 import com.app.p3l.DAO.SupplierDAO;
 import com.app.p3l.R;
 
@@ -121,6 +122,11 @@ public class JenisHewanAdapter extends  RecyclerView.Adapter<JenisHewanAdapter.J
     @Override
     public int getItemCount() {
         return jenis.size();
+    }
+
+    public void filterList(List<Jenis_HewanDAO> filteredList){
+        jenis = filteredList;
+        notifyDataSetChanged();
     }
 
     public class JenisView extends RecyclerView.ViewHolder {

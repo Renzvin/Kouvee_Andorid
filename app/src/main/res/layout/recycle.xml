@@ -4,6 +4,11 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
+    <EditText
+        android:id="@+id/search_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="0dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"

@@ -2,9 +2,12 @@ package com.app.p3l.ui.jenis_hewan;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,6 +27,7 @@ import com.app.p3l.Adapter.JenisHewanAdapter;
 import com.app.p3l.CRUDActivity.CreateJenisHewanActivity;
 import com.app.p3l.CRUDActivity.CreateUkuranHewanActivity;
 import com.app.p3l.DAO.Jenis_HewanDAO;
+import com.app.p3l.DAO.LayananDAO;
 import com.app.p3l.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -68,7 +72,34 @@ public class JenisHewanFragment extends Fragment {
             }
         });
         new ItemTouchHelper(supplierMoveCallback).attachToRecyclerView(jenisRecycler);
+        EditText search = getView().findViewById(R.id.search_bar);
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                filter(s.toString());
+            }
+        });
         getJenis();
+    }
+
+    private void filter(String search){
+        List<Jenis_HewanDAO> example = new ArrayList<>();
+        for(Jenis_HewanDAO temp : jenis){
+            if (temp.getNama().toLowerCase().contains(search.toLowerCase())){
+                example.add(temp);
+            }
+        }
+        jenisAdapter.filterList(example);
     }
 
     ItemTouchHelper.SimpleCallback supplierMoveCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {

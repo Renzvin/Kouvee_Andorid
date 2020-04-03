@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,6 +18,7 @@ import com.app.p3l.Activity.LayananActivity;
 import com.app.p3l.Activity.ProdukActivity;
 import com.app.p3l.Activity.SupplierActivity;
 import com.app.p3l.R;
+import com.app.p3l.Temporary.TemporaryRoleId;
 
 
 public class DataFragment extends Fragment {
@@ -58,6 +60,7 @@ public class DataFragment extends Fragment {
                 startActivity(i);
             }
         });
+        Toast.makeText(getActivity().getApplicationContext(),Integer.toString(TemporaryRoleId.id),Toast.LENGTH_LONG).show();
         return v;
     }
 }

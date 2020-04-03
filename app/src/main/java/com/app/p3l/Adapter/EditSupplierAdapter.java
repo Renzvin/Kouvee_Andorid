@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.p3l.CRUDActivity.EditProdukActivity;
 import com.app.p3l.CRUDActivity.EditSupplierActivity;
+import com.app.p3l.DAO.LayananDAO;
 import com.app.p3l.DAO.ProdukDAO;
 import com.app.p3l.DAO.SupplierDAO;
 import com.app.p3l.R;
@@ -62,6 +63,11 @@ public class EditSupplierAdapter extends RecyclerView.Adapter<EditSupplierAdapte
     @Override
     public int getItemCount() {
         return supplier.size();
+    }
+
+    public void filterList(List<SupplierDAO> filteredList){
+        supplier = filteredList;
+        notifyDataSetChanged();
     }
 
     public class SupplierView extends RecyclerView.ViewHolder {

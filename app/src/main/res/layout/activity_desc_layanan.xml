@@ -10,8 +10,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
-        android:layout_width="361dp"
-        android:layout_height="306dp"
+        android:layout_width="380dp"
+        android:layout_height="307dp"
         android:background="#F3C7DB"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,8 +22,8 @@
 
         <TextView
             android:id="@+id/desc_l_edited"
-            android:layout_width="169dp"
-            android:layout_height="17dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Nama : "
             android:inputType="text"
@@ -31,15 +31,15 @@
             android:textColorHint="#000000"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.924"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.674" />
+            app:layout_constraintVertical_bias="0.663" />
 
         <TextView
             android:id="@+id/desc_l_created"
-            android:layout_width="169dp"
-            android:layout_height="18dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Nama : "
             android:inputType="text"
@@ -47,15 +47,15 @@
             android:textColorHint="#000000"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.924"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.608" />
+            app:layout_constraintVertical_bias="0.597" />
 
         <TextView
             android:id="@+id/desc_l_status"
-            android:layout_width="61dp"
-            android:layout_height="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Nama : "
             android:inputType="text"
@@ -63,15 +63,15 @@
             android:textColorHint="#000000"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.343"
+            app:layout_constraintHorizontal_bias="0.924"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.534" />
+            app:layout_constraintVertical_bias="0.531" />
 
         <TextView
             android:id="@+id/desc_l_harga"
-            android:layout_width="61dp"
-            android:layout_height="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Nama : "
             android:inputType="text"
@@ -79,14 +79,14 @@
             android:textColorHint="#000000"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.343"
+            app:layout_constraintHorizontal_bias="0.924"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.461" />
+            app:layout_constraintVertical_bias="0.465" />
 
         <TextView
             android:id="@+id/desc_l_nama"
-            android:layout_width="256dp"
+            android:layout_width="177dp"
             android:layout_height="20dp"
             android:ems="10"
             android:hint="Nama : "
@@ -95,65 +95,65 @@
             android:textColorHint="#000000"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.98"
+            app:layout_constraintHorizontal_bias="0.965"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.391" />
+            app:layout_constraintVertical_bias="0.393" />
 
         <TextView
             android:id="@+id/Status"
-            android:layout_width="52dp"
-            android:layout_height="21dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Status : "
+            android:hint="Status                                  : "
             android:inputType="number"
             android:textColor="#000000"
             android:textColorHint="#000000"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.126"
+            app:layout_constraintHorizontal_bias="0.129"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Nama"
             app:layout_constraintVertical_bias="0.129" />
 
         <TextView
             android:id="@+id/edited"
-            android:layout_width="141dp"
-            android:layout_height="22dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Diedit pada tanggal : "
+            android:hint="Diedit pada tanggal          : "
             android:inputType="text"
             android:textColor="#000000"
             android:textColorHint="#000000"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.177"
+            app:layout_constraintHorizontal_bias="0.129"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.69" />
+            app:layout_constraintVertical_bias="0.665" />
 
         <TextView
             android:id="@+id/creared"
-            android:layout_width="141dp"
-            android:layout_height="22dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Dibuat pada tanggal : "
+            android:hint="Dibuat pada tanggal         : "
             android:inputType="text"
             android:textColor="#000000"
             android:textColorHint="#000000"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.177"
+            app:layout_constraintHorizontal_bias="0.129"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.612" />
+            app:layout_constraintVertical_bias="0.599" />
 
         <TextView
             android:id="@+id/Nama"
-            android:layout_width="54dp"
-            android:layout_height="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Nama : "
+            android:hint="Nama                                   : "
             android:inputType="text"
             android:textColor="#000000"
             android:textColorHint="#000000"
@@ -166,16 +166,16 @@
 
         <TextView
             android:id="@+id/Harga"
-            android:layout_width="44dp"
-            android:layout_height="19dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Harga : "
+            android:hint="Harga                                   : "
             android:inputType="number"
             android:textColor="#000000"
             android:textColorHint="#000000"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.123"
+            app:layout_constraintHorizontal_bias="0.129"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Nama"
             app:layout_constraintVertical_bias="0.006" />

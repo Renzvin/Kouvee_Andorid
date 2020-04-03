@@ -19,6 +19,21 @@
         <action
             android:id="@+id/action_HomeFragment_to_HomeSecondFragment"
             app:destination="@id/nav_home_second" />
+        <action
+            android:id="@+id/action_nav_produk_to_nav_struk"
+            app:destination="@id/nav_struk" />
+        <action
+            android:id="@+id/action_nav_produk_to_nav_customer"
+            app:destination="@id/nav_customer" />
+        <action
+            android:id="@+id/action_nav_produk_to_nav_data"
+            app:destination="@id/nav_data" />
+        <action
+            android:id="@+id/action_nav_produk_to_nav_layanan"
+            app:destination="@id/nav_layanan" />
+        <action
+            android:id="@+id/action_nav_produk_to_nav_pemesanan"
+            app:destination="@id/nav_pemesanan" />
     </fragment>
     <fragment
         android:id="@+id/nav_home_second"
@@ -44,7 +59,11 @@
         android:id="@+id/nav_data"
         android:name="com.app.p3l.ui.data.DataFragment"
         android:label="Data"
-        tools:layout="@layout/fragment_data" />
+        tools:layout="@layout/fragment_data" >
+        <argument
+            android:name="role_id"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/nav_customer"
         android:name="com.app.p3l.ui.customer.CustomerFragment"

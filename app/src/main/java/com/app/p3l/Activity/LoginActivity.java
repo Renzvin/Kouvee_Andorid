@@ -20,6 +20,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.app.p3l.R;
+import com.app.p3l.Temporary.TemporaryRoleId;
 
 import org.json.JSONObject;
 
@@ -39,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
     String data = "-";
     String role = "-";
     String nama = "-";
-
+    int id = 0;
     ProgressDialog dialog;
 
     @Override
@@ -83,11 +84,13 @@ public class LoginActivity extends AppCompatActivity {
                         Intent i = new Intent(LoginActivity.this,MainActivity.class);
                         i.putExtra("nama",nama);
                         i.putExtra("role",role);
+                        TemporaryRoleId.id = id;
                         startActivity(i);
                     } else if(role.equalsIgnoreCase("CS")){
                         Intent i = new Intent(LoginActivity.this,CSActivity.class);
                         i.putExtra("nama",nama);
                         i.putExtra("role",role);
+                        TemporaryRoleId.id = id;
                         startActivity(i);
                     } else{
                         Toast.makeText(LoginActivity.this,"Role anda tidak jelas",Toast.LENGTH_SHORT).show();
@@ -146,6 +149,7 @@ public class LoginActivity extends AppCompatActivity {
                             JSONObject objUser = new JSONObject(user);
                             nama = objUser.getString("nama");
                             role = objUser.getString("role_name");
+                            id = objUser.getInt("id");
                             System.out.println(role);
                         } catch (JSONException e) {
                             e.printStackTrace();

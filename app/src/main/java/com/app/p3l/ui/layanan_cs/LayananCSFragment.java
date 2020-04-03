@@ -1,9 +1,12 @@
 package com.app.p3l.ui.layanan_cs;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,9 +55,36 @@ public class LayananCSFragment extends Fragment {
         layananAdapter = new LayananCSAdapter(getContext(), layanan);
         dataRecycler.setLayoutManager(gridLayoutManager);
         dataRecycler.setAdapter(layananAdapter);
+        EditText search = v.findViewById(R.id.search_bar);
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                filter(s.toString());
+            }
+        });
 
         getProduk();
         return v;
+    }
+
+    private void filter(String search){
+        List<LayananDAO> example = new ArrayList<>();
+        for(LayananDAO temp : layanan){
+            if (temp.getNama().toLowerCase().contains(search.toLowerCase())){
+                example.add(temp);
+            }
+        }
+        layananAdapter.filterList(example);
     }
 
     private void getProduk() {

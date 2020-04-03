@@ -8,9 +8,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -57,8 +60,35 @@ public class EditProdukFragment extends Fragment {
         produkAdapter = new EditProdukAdapter(produk,getContext());
         produkRecycler.setLayoutManager(gridLayoutManager);
         produkRecycler.setAdapter(produkAdapter);
+        EditText search = getView().findViewById(R.id.search_bar);
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                filter(s.toString());
+            }
+        });
 
         getProduk();
+    }
+
+    private void filter(String search){
+        List<ProdukDAO> example = new ArrayList<>();
+        for(ProdukDAO temp : produk){
+            if (temp.getNama().toLowerCase().contains(search.toLowerCase())){
+                example.add(temp);
+            }
+        }
+        produkAdapter.filterList(example);
     }
 
     private void getProduk() {

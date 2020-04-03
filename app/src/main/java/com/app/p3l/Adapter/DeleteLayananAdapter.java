@@ -117,6 +117,11 @@ public class DeleteLayananAdapter extends RecyclerView.Adapter<DeleteLayananAdap
         return layanan.size();
     }
 
+    public void filterList(List<LayananDAO> filteredList){
+        layanan = filteredList;
+        notifyDataSetChanged();
+    }
+
     public void filteredList(ArrayList<LayananDAO> filteredList){
         layanan = filteredList;
         notifyDataSetChanged();

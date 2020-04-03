@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
+
     <EditText
         android:id="@+id/search_bar"
         android:layout_width="match_parent"
@@ -15,16 +16,15 @@
         tools:layout_editor_absoluteX="0dp" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/floating_ukuran_recycler"
+        android:id="@+id/floating_hewan_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="28dp"
         android:layout_marginTop="44dp"
         app:layout_constraintTop_toTopOf="@+id/search_bar"
-        tools:layout_editor_absoluteY="0dp"></androidx.recyclerview.widget.RecyclerView>
+        tools:layout_editor_absoluteX="-16dp"></androidx.recyclerview.widget.RecyclerView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/create_ukuran_hewan"
+        android:id="@+id/create_hewan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/more"

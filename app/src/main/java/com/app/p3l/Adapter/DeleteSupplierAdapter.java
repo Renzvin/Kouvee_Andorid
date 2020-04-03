@@ -117,6 +117,11 @@ public class DeleteSupplierAdapter extends RecyclerView.Adapter<DeleteSupplierAd
         return supplier.size();
     }
 
+    public void filterList(List<SupplierDAO> filteredList){
+        supplier = filteredList;
+        notifyDataSetChanged();
+    }
+
     public class SupplierView extends RecyclerView.ViewHolder {
         TextView Title,Address,City,Phone;
         LinearLayout parent;

@@ -1,9 +1,12 @@
 package com.app.p3l.ui.produk_cs;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +28,7 @@ import com.app.p3l.Adapter.ProdukAdapter;
 import com.app.p3l.Adapter.ProdukCSAdapter;
 import com.app.p3l.DAO.ProdukDAO;
 import com.app.p3l.R;
+import com.app.p3l.Temporary.TemporaryRoleId;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -51,9 +55,36 @@ public class ProdukCSFragment extends Fragment {
         produkAdapter = new ProdukCSAdapter(getContext(), produk);
         produkRecycler.setLayoutManager(gridLayoutManager);
         produkRecycler.setAdapter(produkAdapter);
-
+        Toast.makeText(getActivity().getApplicationContext(),Integer.toString(TemporaryRoleId.id),Toast.LENGTH_LONG).show();
         getProduk();
+        EditText search = v.findViewById(R.id.search_bar);
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                filter(s.toString());
+            }
+        });
         return v;
+    }
+
+    private void filter(String search){
+        List<ProdukDAO> example = new ArrayList<>();
+        for(ProdukDAO temp : produk){
+            if (temp.getNama().toLowerCase().contains(search.toLowerCase())){
+                example.add(temp);
+            }
+        }
+        produkAdapter.filterList(example);
     }
 
     private void getProduk() {

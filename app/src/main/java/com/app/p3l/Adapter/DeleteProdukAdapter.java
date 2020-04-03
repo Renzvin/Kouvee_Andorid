@@ -117,7 +117,8 @@ public class DeleteProdukAdapter extends RecyclerView.Adapter<DeleteProdukAdapte
     public int getItemCount() {
         return produk.size();
     }
-    public void filteredList(ArrayList<ProdukDAO> filteredList){
+
+    public void filterList(List<ProdukDAO> filteredList){
         produk = filteredList;
         notifyDataSetChanged();
     }

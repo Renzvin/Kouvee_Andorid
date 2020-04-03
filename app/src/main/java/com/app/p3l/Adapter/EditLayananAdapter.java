@@ -62,6 +62,11 @@ public class EditLayananAdapter extends RecyclerView.Adapter<EditLayananAdapter.
         return layanan.size();
     }
 
+    public void filterList(List<LayananDAO> filteredList){
+        layanan = filteredList;
+        notifyDataSetChanged();
+    }
+
     public class LayananView extends RecyclerView.ViewHolder {
         ImageView Image;
         TextView Title,Price;

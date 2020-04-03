@@ -3,10 +3,13 @@ package com.app.p3l.ui.produk;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -63,7 +66,34 @@ public class ProdukFragment extends Fragment  {
         produkAdapter = new ProdukAdapter(produk,getContext());
         produkRecycler.setLayoutManager(gridLayoutManager);
         produkRecycler.setAdapter(produkAdapter);
+        EditText search = getView().findViewById(R.id.search_bar);
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                filter(s.toString());
+            }
+        });
         getProduk();
+    }
+
+    private void filter(String search){
+        List<ProdukDAO> example = new ArrayList<>();
+        for(ProdukDAO temp : produk){
+            if (temp.getNama().toLowerCase().contains(search.toLowerCase())){
+                example.add(temp);
+            }
+        }
+        produkAdapter.filterList(example);
     }
 
     private void getProduk() {

@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.p3l.DAO.LayananDAO;
+import com.app.p3l.DAO.ProdukDAO;
 import com.app.p3l.R;
 import com.squareup.picasso.Picasso;
 
@@ -45,6 +46,11 @@ public class LayananCSAdapter extends RecyclerView.Adapter<LayananCSAdapter.Laya
     @Override
     public int getItemCount() {
         return layanan.size();
+    }
+
+    public void filterList(List<LayananDAO> filteredList){
+        layanan = filteredList;
+        notifyDataSetChanged();
     }
 
     public class LayananView extends RecyclerView.ViewHolder {
