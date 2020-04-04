@@ -77,6 +77,12 @@
         <activity android:name=".Activity.DescLayananActivity">
 
         </activity>
+        <activity android:name=".CRUDActivity.CreateHewanActivity">
+
+        </activity>
+        <activity android:name=".CRUDActivity.EditHewanActivity">
+
+        </activity>
     </application>
 
 </manifest>

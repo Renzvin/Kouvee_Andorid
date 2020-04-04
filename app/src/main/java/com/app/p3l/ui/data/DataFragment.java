@@ -60,7 +60,6 @@ public class DataFragment extends Fragment {
                 startActivity(i);
             }
         });
-        Toast.makeText(getActivity().getApplicationContext(),Integer.toString(TemporaryRoleId.id),Toast.LENGTH_LONG).show();
         return v;
     }
 }

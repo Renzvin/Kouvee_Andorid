@@ -19,6 +19,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.app.p3l.Activity.HewanActivity;
+import com.app.p3l.CRUDActivity.EditHewanActivity;
 import com.app.p3l.CRUDActivity.EditJenisHewanActivity;
 import com.app.p3l.DAO.HewanDAO;
 import com.app.p3l.DAO.Jenis_HewanDAO;
@@ -56,14 +58,15 @@ public class HewanAdapter extends  RecyclerView.Adapter<HewanAdapter.HewanView> 
         final HewanDAO row = hewan.get(position);
         holder.Title.setText(row.getNama());
         holder.tanggal.setText(row.getTanggal_lahir());
-        holder.jenis.setText(Integer.toString(row.getUkuran_id()));
-        holder.ukuran.setText(Integer.toString(row.getUkuran_id()));
+        holder.jenis.setText(row.getNama_jenis());
+        holder.ukuran.setText(row.getNama_ukuran());
         holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, EditJenisHewanActivity.class);
-                intent.putExtra("Jnama",row.getNama());
-                intent.putExtra("Jid",Integer.toString(row.getId()));
+                Intent intent = new Intent(context, EditHewanActivity.class);
+                intent.putExtra("nama",row.getNama());
+                intent.putExtra("tanggal",row.getTanggal_lahir());
+                intent.putExtra("id",Integer.toString(row.getId()));
                 context.startActivity(intent);
             }
         });

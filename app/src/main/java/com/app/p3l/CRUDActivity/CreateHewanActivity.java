@@ -1,16 +1,20 @@
 package com.app.p3l.CRUDActivity;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -23,20 +27,24 @@ import com.app.p3l.DAO.Jenis_HewanDAO;
 import com.app.p3l.DAO.Ukuran_HewanDAO;
 import com.app.p3l.R;
 import com.app.p3l.Temporary.TemporaryRoleId;
+import com.app.p3l.ui.data.DataFragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CreateHewanActivity extends AppCompatActivity {
-    private EditText nama, tanggal_lahir;
+public class CreateHewanActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+    private EditText nama;
+    private TextView tanggal;
     private Spinner spinnerjenis,spinnerukuran;
-    private Button create;
+    private Button create,date;
     List<Jenis_HewanDAO> jenis = new ArrayList<>();
     List<String> temp = new ArrayList<String>();
     List<Ukuran_HewanDAO> ukuran = new ArrayList<>();
@@ -46,16 +54,20 @@ public class CreateHewanActivity extends AppCompatActivity {
     String message = "-";
     String data = "-";
     String kat1 = "1", kat2 = "1";
+    String temporary = "9999-12-31";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_hewan);
         nama = (EditText) findViewById(R.id.create_nama_hewan);
-        tanggal_lahir = (EditText) findViewById(R.id.create_tanggal_lahir);
+        tanggal = (TextView) findViewById(R.id.create_tanggal_lahir);
         spinnerjenis = (Spinner) findViewById(R.id.spinner_jenis);
         spinnerukuran = (Spinner) findViewById(R.id.spinner_ukuran);
+        date = (Button) findViewById(R.id.create_date);
         create = (Button) findViewById(R.id.hewan_tambah);
+        getJenis();
+        getUkuran();
         spinnerukuran.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -90,12 +102,31 @@ public class CreateHewanActivity extends AppCompatActivity {
             }
         });
 
+        date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment datePicker = new com.app.p3l.Temporary.DatePicker();
+                datePicker.show(getSupportFragmentManager(), "tanggal");
+            }
+        });
+
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createHewan(nama.getText().toString(),tanggal_lahir.getText().toString(),kat2,kat1,Integer.toString(TemporaryRoleId.id));
+                createHewan(nama.getText().toString(),temporary,kat2,kat1,Integer.toString(TemporaryRoleId.id));
             }
         });
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.YEAR,year);
+        c.set(Calendar.MONTH,month);
+        c.set(Calendar.DAY_OF_MONTH,dayOfMonth);
+        String dateformat = DateFormat.getInstance().format(c.getTime());
+        tanggal.setText(dateformat);
+        temporary = Integer.toString(year) + "-" + Integer.toString(month) + "-" + Integer.toString(dayOfMonth);
     }
 
     private void getJenis() {
@@ -175,7 +206,7 @@ public class CreateHewanActivity extends AppCompatActivity {
                             for (int i = 0; i < ukuran.size(); i++){
                                 temp2.add(ukuran.get(i).getNama().toString());
                             }
-                            ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(CreateHewanActivity.this, android.R.layout.simple_spinner_item,temp);
+                            ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(CreateHewanActivity.this, android.R.layout.simple_spinner_item,temp2);
                             spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                             spinnerukuran.setAdapter(spinnerArrayAdapter);
                         } catch (JSONException e) {

@@ -13,25 +13,10 @@
         android:background="#F3C7DB"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.601">
-
-        <EditText
-            android:id="@+id/edit_tanggal_lahir"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Tanggal Lahir Hewan"
-            android:inputType="textPersonName"
-            android:textColor="#000000"
-            android:textColorHint="#000000"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.495"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.454" />
+        app:layout_constraintVertical_bias="0.665">
 
         <Button
             android:id="@+id/hewan_edit"
@@ -64,33 +49,34 @@
             app:layout_constraintVertical_bias="0.278" />
 
         <Spinner
-            android:id="@+id/spinner_jenis"
+            android:id="@+id/edit_spinner_jenis"
             android:layout_width="156dp"
             android:layout_height="29dp"
+            android:layout_marginTop="45dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.976"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edit_tanggal_lahir" />
+            app:layout_constraintTop_toBottomOf="@+id/edit_nama_hewan" />
 
         <Spinner
-            android:id="@+id/spinner_ukuran"
-            android:layout_width="157dp"
-            android:layout_height="27dp"
+            android:id="@+id/edit_spinner_ukuran"
+            android:layout_width="156dp"
+            android:layout_height="28dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.976"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinner_jenis"
+            app:layout_constraintTop_toBottomOf="@+id/edit_spinner_jenis"
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="48dp"
             android:text="Jenis Hewan"
-            app:layout_constraintEnd_toStartOf="@+id/spinner_jenis"
+            app:layout_constraintEnd_toStartOf="@+id/edit_spinner_jenis"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edit_tanggal_lahir" />
@@ -101,10 +87,32 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Ukuran Hewan"
-            app:layout_constraintEnd_toStartOf="@+id/spinner_ukuran"
-            app:layout_constraintHorizontal_bias="0.493"
+            app:layout_constraintEnd_toStartOf="@+id/edit_spinner_ukuran"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+        <TextView
+            android:id="@+id/edit_tanggal_lahir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="16dp"
+            android:text="Tanggal Lahir"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_nama_hewan" />
+
+        <Button
+            android:id="@+id/edit_date"
+            android:layout_width="147dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="8dp"
+            android:text="Tanggal Lahir"
+            app:layout_constraintBottom_toTopOf="@+id/edit_spinner_jenis"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.754"
+            app:layout_constraintStart_toEndOf="@+id/edit_tanggal_lahir"
+            app:layout_constraintTop_toBottomOf="@+id/edit_nama_hewan"
+            app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -112,7 +120,7 @@
         android:id="@+id/textView4"
         android:layout_width="295dp"
         android:layout_height="54dp"
-        android:text="TAMBAH HEWAN"
+        android:text="UBAH HEWAN"
         android:textSize="35dp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
         app:layout_constraintEnd_toEndOf="parent"

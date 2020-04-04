@@ -25,6 +25,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.app.p3l.Adapter.HewanAdapter;
 import com.app.p3l.DAO.HewanDAO;
+import com.app.p3l.DAO.Jenis_HewanDAO;
+import com.app.p3l.DAO.Ukuran_HewanDAO;
 import com.app.p3l.R;
 import com.app.p3l.CRUDActivity.CreateHewanActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -137,7 +139,7 @@ public class HewanFragment extends Fragment {
                             for(int i = 0; i<jsonArray.length(); i++) {
                                 JSONObject obj = jsonArray.getJSONObject(i);
                                 if (obj.getString("deleted_at").equalsIgnoreCase("null")) {
-                                    HewanDAO jen = new HewanDAO(obj.getString("nama"),obj.getString("tanggal_lahir"),obj.getInt("ukuran_id"),obj.getInt("jenis_id"), obj.getInt("pegawai_id"), obj.getInt("id"));
+                                    HewanDAO jen = new HewanDAO(obj.getString("nama"),obj.getString("tanggal_lahir"),obj.getString("jenis_hewan"),obj.getString("ukuran_hewan"),obj.getInt("ukuran_id"),obj.getInt("jenis_id"), obj.getInt("pegawai_id"), obj.getInt("id"));
                                     hewan.add(jen);
                                 }
                             }
