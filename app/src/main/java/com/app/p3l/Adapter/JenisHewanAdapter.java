@@ -36,9 +36,6 @@ public class JenisHewanAdapter extends  RecyclerView.Adapter<JenisHewanAdapter.J
     List<Jenis_HewanDAO> jenis ;
     private Context context;
 
-    String status = "-";
-    String message = "-";
-
     public JenisHewanAdapter(List<Jenis_HewanDAO> jenis, Context context) {
         this.jenis = jenis;
         this.context = context;
@@ -80,17 +77,7 @@ public class JenisHewanAdapter extends  RecyclerView.Adapter<JenisHewanAdapter.J
                     public void onResponse(String response) {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-
-                            status = jsonObject.getString("status");
-                            message = jsonObject.getString("data");
-
-                            System.out.println("Response : " + status);
-                            System.out.println("Message  : " + message);
-
-
-
                             Toast.makeText(context,"Berhasil Hapus Data",Toast.LENGTH_SHORT).show();
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

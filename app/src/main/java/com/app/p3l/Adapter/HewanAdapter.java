@@ -37,8 +37,6 @@ import java.util.Map;
 public class HewanAdapter extends  RecyclerView.Adapter<HewanAdapter.HewanView> {
     List<HewanDAO> hewan ;
     private Context context;
-    String status = "-";
-    String message = "-";
 
     public HewanAdapter(List<HewanDAO> hewan, Context context) {
         this.hewan = hewan;
@@ -85,16 +83,7 @@ public class HewanAdapter extends  RecyclerView.Adapter<HewanAdapter.HewanView> 
                     public void onResponse(String response) {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-
-                            status = jsonObject.getString("status");
-                            message = jsonObject.getString("data");
-
-                            System.out.println("Response : " + status);
-                            System.out.println("Message  : " + message);
-
-
                             Toast.makeText(context, "Berhasil Hapus Data", Toast.LENGTH_SHORT).show();
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

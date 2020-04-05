@@ -48,9 +48,6 @@ public class EditHewanActivity extends AppCompatActivity implements DatePickerDi
     List<Ukuran_HewanDAO> ukuran = new ArrayList<>();
     List<String> temp2 = new ArrayList<String>();
 
-    String status = "-";
-    String message = "-";
-    String data = "-";
     String kat1 = "1", kat2 = "1";
     String temporary = "9999-12-31";
 
@@ -140,16 +137,8 @@ public class EditHewanActivity extends AppCompatActivity implements DatePickerDi
                     public void onResponse(String response) {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-
-                            status = jsonObject.getString("status");
-                            data = jsonObject.getString("data");
-                            System.out.println("Response : " + status);
-                            System.out.println("Message  : " + data);
-
-
                             String produks = jsonObject.getString("data");
                             JSONArray jsonArray = new JSONArray(produks);
-
                             for(int i = 0; i<jsonArray.length(); i++) {
                                 JSONObject obj = jsonArray.getJSONObject(i);
                                 if (obj.getString("deleted_at").equalsIgnoreCase("null")) {
@@ -187,16 +176,8 @@ public class EditHewanActivity extends AppCompatActivity implements DatePickerDi
                     public void onResponse(String response) {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-
-                            status = jsonObject.getString("status");
-                            data = jsonObject.getString("data");
-                            System.out.println("Response : " + status);
-                            System.out.println("Message  : " + data);
-
-
                             String produks = jsonObject.getString("data");
                             JSONArray jsonArray = new JSONArray(produks);
-
                             for(int i = 0; i<jsonArray.length(); i++) {
                                 JSONObject obj = jsonArray.getJSONObject(i);
                                 if (obj.getString("deleted_at").equalsIgnoreCase("null")) {
@@ -233,13 +214,6 @@ public class EditHewanActivity extends AppCompatActivity implements DatePickerDi
                     public void onResponse(String response) {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-
-                            status = jsonObject.getString("status");
-                            message = jsonObject.getString("message");
-
-                            System.out.println("Response : " + status);
-                            System.out.println("Message  : " + message);
-
                             Toast.makeText(EditHewanActivity.this,"Sukses Mengubah Hewan",Toast.LENGTH_SHORT).show();
                         } catch (JSONException e) {
                             e.printStackTrace();

@@ -44,9 +44,6 @@ public class HewanFragment extends Fragment {
     private FloatingActionButton create;
     List<HewanDAO> hewan = new ArrayList<>();
 
-    String data = "-";
-    String status = "-";
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -126,16 +123,8 @@ public class HewanFragment extends Fragment {
                     public void onResponse(String response) {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-
-                            status = jsonObject.getString("status");
-                            data = jsonObject.getString("data");
-                            System.out.println("Response : " + status);
-                            System.out.println("Message  : " + data);
-
-
                             String produks = jsonObject.getString("data");
                             JSONArray jsonArray = new JSONArray(produks);
-
                             for(int i = 0; i<jsonArray.length(); i++) {
                                 JSONObject obj = jsonArray.getJSONObject(i);
                                 if (obj.getString("deleted_at").equalsIgnoreCase("null")) {

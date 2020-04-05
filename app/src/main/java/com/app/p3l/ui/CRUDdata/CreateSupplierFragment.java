@@ -38,11 +38,6 @@ public class CreateSupplierFragment extends Fragment {
     private EditText nama,alamat,kota,no_hp;
     private Button create;
 
-
-    String status = "-";
-    String message = "-";
-
-
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View View =  inflater.inflate(R.layout.fragment_create_supplier, container, false);
         return View;
@@ -73,13 +68,6 @@ public class CreateSupplierFragment extends Fragment {
                     public void onResponse(String response) {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-
-                            status = jsonObject.getString("status");
-                            message = jsonObject.getString("message");
-
-                            System.out.println("Response : " + status);
-                            System.out.println("Message  : " + message);
-
                             Toast.makeText(getActivity().getApplicationContext(),"Sukses Mendaftar Supplier",Toast.LENGTH_SHORT).show();
                         } catch (JSONException e) {
                             e.printStackTrace();

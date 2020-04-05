@@ -28,9 +28,6 @@ public class CreateUkuranHewanActivity extends AppCompatActivity {
     private EditText nama;
     private Button create;
 
-    String status = "-";
-    String message = "-";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,16 +52,7 @@ public class CreateUkuranHewanActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-
-                            status = jsonObject.getString("status");
-                            message = jsonObject.getString("message");
-
-                            System.out.println("Response : " + status);
-                            System.out.println("Message  : " + message);
-
-
                             Toast.makeText(CreateUkuranHewanActivity.this,"Sukses Menambah Data Ukuran",Toast.LENGTH_SHORT).show();
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

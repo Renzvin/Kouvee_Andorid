@@ -54,16 +54,9 @@ public class EditProdukActivity extends AppCompatActivity implements View.OnClic
     private Button gambar,edit;
     private ImageView image;
     private Bitmap bitmap,decoded;
-
     public final static String url = "http://renzvin.com/kouvee/api/produk/update/";
-
-    String status = "-";
-    String message = "-";
     String kat = "1";
-    String data = "-";
-
     private final int IMG_REQUEST = 1;
-
     List<Kategori_ProdukDAO> kategori_produkDAOS = new ArrayList<>();
     List<String> temp = new ArrayList<String>();
 
@@ -175,16 +168,8 @@ public class EditProdukActivity extends AppCompatActivity implements View.OnClic
                     public void onResponse(String response) {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-
-                            status = jsonObject.getString("status");
-                            data = jsonObject.getString("data");
-                            System.out.println("Response : " + status);
-                            System.out.println("Message  : " + data);
-
-
                             String produks = jsonObject.getString("data");
                             JSONArray jsonArray = new JSONArray(produks);
-
                             for(int i = 0; i<jsonArray.length(); i++) {
                                 JSONObject obj = jsonArray.getJSONObject(i);
                                 Kategori_ProdukDAO pro = new Kategori_ProdukDAO(obj.getString("nama"), obj.getInt("id"));

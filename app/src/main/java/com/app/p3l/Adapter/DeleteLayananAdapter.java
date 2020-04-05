@@ -51,8 +51,6 @@ public class DeleteLayananAdapter extends RecyclerView.Adapter<DeleteLayananAdap
     List<LayananDAO> layanan ;
     private Context context;
 
-    String status = "-";
-    String message = "-";
     public DeleteLayananAdapter(List<LayananDAO> layanan,Context context) {
         this.layanan = layanan;
         this.context = context;

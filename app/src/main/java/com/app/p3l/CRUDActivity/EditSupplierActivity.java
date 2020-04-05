@@ -38,9 +38,6 @@ public class EditSupplierActivity extends AppCompatActivity {
     private EditText nama,alamat,kota,no_hp;
     private Button edit;
 
-    String status = "-";
-    String message = "-";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,16 +72,7 @@ public class EditSupplierActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-
-                            status = jsonObject.getString("status");
-                            message = jsonObject.getString("message");
-
-                            System.out.println("Response : " + status);
-                            System.out.println("Message  : " + message);
-
-
                             Toast.makeText(EditSupplierActivity.this,"Sukses Mengubah Data Supplier",Toast.LENGTH_SHORT).show();
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

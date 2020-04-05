@@ -35,8 +35,6 @@ public class DeleteSupplierAdapter extends RecyclerView.Adapter<DeleteSupplierAd
     List<SupplierDAO> supplier ;
     private Context context;
 
-    String status = "-";
-    String message = "-";
     public DeleteSupplierAdapter(List<SupplierDAO> supplier, Context context) {
         this.supplier = supplier;
         this.context = context;
@@ -72,17 +70,7 @@ public class DeleteSupplierAdapter extends RecyclerView.Adapter<DeleteSupplierAd
                     public void onResponse(String response) {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-
-                            status = jsonObject.getString("status");
-                            message = jsonObject.getString("data");
-
-                            System.out.println("Response : " + status);
-                            System.out.println("Message  : " + message);
-
-
-
                             Toast.makeText(context,"Berhasil Hapus Data",Toast.LENGTH_SHORT).show();
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

@@ -36,10 +36,6 @@ public class UkuranHewanAdapter extends  RecyclerView.Adapter<UkuranHewanAdapter
     List<Ukuran_HewanDAO> ukuran ;
     private Context context;
 
-    String status = "-";
-    String message = "-";
-
-
     public UkuranHewanAdapter(List<Ukuran_HewanDAO> ukuran, Context context) {
         this.ukuran = ukuran;
         this.context = context;
@@ -81,17 +77,7 @@ public class UkuranHewanAdapter extends  RecyclerView.Adapter<UkuranHewanAdapter
                     public void onResponse(String response) {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-
-                            status = jsonObject.getString("status");
-                            message = jsonObject.getString("data");
-
-                            System.out.println("Response : " + status);
-                            System.out.println("Message  : " + message);
-
-
-
                             Toast.makeText(context,"Berhasil Hapus Data",Toast.LENGTH_SHORT).show();
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

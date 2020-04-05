@@ -50,8 +50,6 @@ public class DeleteProdukAdapter extends RecyclerView.Adapter<DeleteProdukAdapte
     List<ProdukDAO> produk ;
     private Context context;
 
-    String status = "-";
-    String message = "-";
     public DeleteProdukAdapter(List<ProdukDAO> produk,Context context) {
         this.produk = produk;
         this.context = context;
