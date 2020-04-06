@@ -1,11 +1,14 @@
 package com.app.p3l.CRUDActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -43,6 +46,7 @@ import org.json.JSONObject;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -53,12 +57,15 @@ public class EditProdukActivity extends AppCompatActivity implements View.OnClic
     private Spinner kategori;
     private Button gambar,edit;
     private ImageView image;
-    private Bitmap bitmap,decoded;
+    private Bitmap bitmap;
     public final static String url = "http://renzvin.com/kouvee/api/produk/update/";
     String kat = "1";
+    String status = "0";
+    private Handler mHandler = new Handler();
     private final int IMG_REQUEST = 1;
     List<Kategori_ProdukDAO> kategori_produkDAOS = new ArrayList<>();
     List<String> temp = new ArrayList<String>();
+    ProgressDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +77,7 @@ public class EditProdukActivity extends AppCompatActivity implements View.OnClic
         gambar = (Button) findViewById(R.id.edit_P_foto);
         image = (ImageView) findViewById(R.id.edit_imageProduk);
         kategori = (Spinner) findViewById(R.id.edit_spinner_produk);
+        dialog = new ProgressDialog(this);
         setSpinner();
         kategori.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -96,23 +104,37 @@ public class EditProdukActivity extends AppCompatActivity implements View.OnClic
         nama.setText(getIntent().getStringExtra("Pnama"));
         stock.setText(getIntent().getStringExtra("Pstock"));
         harga.setText(getIntent().getStringExtra("Pharga"));
-        Picasso.get().load(getIntent().getStringExtra("Pgambar")).into(image);
+        new GetImageFromUrl(image).execute(getIntent().getStringExtra("Pgambar"));
         edit = (Button) findViewById(R.id.Pedit);
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                if(image.getDrawable() != null)
-//                {
-//                    Log.d("Berhasil","Masuk ke image");
-//                    image.setDrawingCacheEnabled(true);
-//                    Bitmap bmap = image.getDrawingCache();
-//                    Bitmap bmap_compressed = ((BitmapDrawable) image.getDrawable()).getBitmap();
-//                    Create(nama.getText().toString(), stock.getText().toString(), harga.getText().toString(), kat, bmap_compressed);
-//                }
                 Create(nama.getText().toString(), stock.getText().toString(), harga.getText().toString(), kat, bitmap);
             }
         });
         getSupportActionBar().hide();
+    }
+
+    private void progDialog() {
+        dialog.setMessage("Mohon menunggu...");
+        dialog.show();
+    }
+
+    private void waitingResponse() {
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println(status);
+                if(status.equalsIgnoreCase("1")) {
+                    Toast.makeText(EditProdukActivity.this, "Sukses Mengubah Data Produk", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(EditProdukActivity.this, "Gagal Mengubah Data Produk", Toast.LENGTH_SHORT).show();
+                }
+                dialog.dismiss();
+            }
+        }, 4000);
     }
 
     private void selectImage(){
@@ -203,7 +225,7 @@ public class EditProdukActivity extends AppCompatActivity implements View.OnClic
                     public void onResponse(NetworkResponse response) {
                         try {
                             JSONObject obj = new JSONObject(new String(response.data));
-                            Toast.makeText(EditProdukActivity.this, "Sukses Mengubah Data", Toast.LENGTH_SHORT).show();
+                            status = "1";
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -212,7 +234,7 @@ public class EditProdukActivity extends AppCompatActivity implements View.OnClic
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(EditProdukActivity.this, "Gagal Mengubah Data", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(EditProdukActivity.this, "Kesalahan Koneksi", Toast.LENGTH_SHORT).show();
                     }
                 }) {
 
@@ -258,4 +280,30 @@ public class EditProdukActivity extends AppCompatActivity implements View.OnClic
                 break;
         }
     }
+
+    public class GetImageFromUrl extends AsyncTask<String, Void, Bitmap> {
+        ImageView imageView;
+        public GetImageFromUrl(ImageView img){
+            this.imageView = img;
+        }
+        @Override
+        protected Bitmap doInBackground(String... url) {
+            String stringUrl = url[0];
+            bitmap = null;
+            InputStream inputStream;
+            try {
+                inputStream = new java.net.URL(stringUrl).openStream();
+                bitmap = BitmapFactory.decodeStream(inputStream);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return bitmap;
+        }
+        @Override
+        protected void onPostExecute(Bitmap bitmap){
+            super.onPostExecute(bitmap);
+            imageView.setImageBitmap(bitmap);
+        }
+    }
 }
+

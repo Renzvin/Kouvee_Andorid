@@ -43,7 +43,7 @@ public class UkuranHewanFragment extends Fragment {
     private UkuranHewanAdapter ukuranAdapter;
     private FloatingActionButton create;
     List<Ukuran_HewanDAO> ukuran = new ArrayList<>();
-    
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

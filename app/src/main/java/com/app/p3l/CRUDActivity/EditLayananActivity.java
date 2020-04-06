@@ -1,10 +1,13 @@
 package com.app.p3l.CRUDActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -28,8 +31,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.app.p3l.Activity.CSActivity;
+import com.app.p3l.Activity.LoginActivity;
+import com.app.p3l.Activity.MainActivity;
 import com.app.p3l.Endpoints.VolleyMultiPartRequest;
 import com.app.p3l.R;
+import com.app.p3l.Temporary.TemporaryRoleId;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
@@ -38,6 +45,7 @@ import org.json.JSONObject;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -46,12 +54,13 @@ public class EditLayananActivity extends AppCompatActivity implements View.OnCli
     private Button gambar,edit;
     private ImageView image;
     private Bitmap bitmap;
-
+    private Handler mHandler = new Handler();
     public final static String url = "http://renzvin.com/kouvee/api/layanan/update/";
 
-    String status = "-";
+    String status = "0";
     String message = "-";
     String kat = "1";
+    ProgressDialog dialog;
 
     private final int IMG_REQUEST = 1;
 
@@ -63,6 +72,7 @@ public class EditLayananActivity extends AppCompatActivity implements View.OnCli
         harga = (EditText) findViewById(R.id.edit_L_Harga);
         gambar = (Button) findViewById(R.id.edit_L_foto);
         image = (ImageView) findViewById(R.id.edit_imageLayanan);
+        dialog = new ProgressDialog(this);
         gambar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,15 +81,39 @@ public class EditLayananActivity extends AppCompatActivity implements View.OnCli
         });
         nama.setText(getIntent().getStringExtra("Lnama"));
         harga.setText(getIntent().getStringExtra("Lharga"));
-        Picasso.get().load(getIntent().getStringExtra("Lgambar")).into(image);
+        new GetImageFromUrl(image).execute(getIntent().getStringExtra("Lgambar"));
         edit = (Button) findViewById(R.id.Ledit);
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Create(nama.getText().toString(), harga.getText().toString(), bitmap);
+                progDialog();
+                waitingResponse();
             }
         });
         getSupportActionBar().hide();
+    }
+
+    private void progDialog() {
+        dialog.setMessage("Mohon menunggu...");
+        dialog.show();
+    }
+
+    private void waitingResponse() {
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println(status);
+                if(status.equalsIgnoreCase("1")) {
+                    Toast.makeText(EditLayananActivity.this, "Sukses Mengubah Data Layanan", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(EditLayananActivity.this, "Gagal Mengubah Data Layanan", Toast.LENGTH_SHORT).show();
+                }
+                dialog.dismiss();
+            }
+        }, 4000);
     }
 
     private void selectImage(){
@@ -103,9 +137,7 @@ public class EditLayananActivity extends AppCompatActivity implements View.OnCli
             try{
                 bitmap = MediaStore.Images.Media.getBitmap(EditLayananActivity.this.getContentResolver(),path);
                 image.setImageBitmap(getResizedBitmap(bitmap, 1024));
-                Toast.makeText(EditLayananActivity.this, "Successfully get image", Toast.LENGTH_SHORT).show();
             }catch (IOException e){
-                Toast.makeText(EditLayananActivity.this, e.toString(), Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -135,7 +167,7 @@ public class EditLayananActivity extends AppCompatActivity implements View.OnCli
                     public void onResponse(NetworkResponse response) {
                         try {
                             JSONObject obj = new JSONObject(new String(response.data));
-                            Toast.makeText(EditLayananActivity.this, "Sukses Mengubah Data", Toast.LENGTH_SHORT).show();
+                            status = "1";
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -144,7 +176,7 @@ public class EditLayananActivity extends AppCompatActivity implements View.OnCli
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(EditLayananActivity.this, "Gagal Mengubah Data", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(EditLayananActivity.this, "Kesalahan Koneksi", Toast.LENGTH_SHORT).show();
                     }
                 }) {
 
@@ -185,6 +217,31 @@ public class EditLayananActivity extends AppCompatActivity implements View.OnCli
             case R.id.L_foto:
                 selectImage();
                 break;
+        }
+    }
+
+    public class GetImageFromUrl extends AsyncTask<String, Void, Bitmap> {
+        ImageView imageView;
+        public GetImageFromUrl(ImageView img){
+            this.imageView = img;
+        }
+        @Override
+        protected Bitmap doInBackground(String... url) {
+            String stringUrl = url[0];
+            bitmap = null;
+            InputStream inputStream;
+            try {
+                inputStream = new java.net.URL(stringUrl).openStream();
+                bitmap = BitmapFactory.decodeStream(inputStream);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return bitmap;
+        }
+        @Override
+        protected void onPostExecute(Bitmap bitmap){
+            super.onPostExecute(bitmap);
+            imageView.setImageBitmap(bitmap);
         }
     }
 }

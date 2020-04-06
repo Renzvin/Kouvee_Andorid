@@ -112,7 +112,7 @@ public class CreateProdukFragment extends Fragment implements  View.OnClickListe
     private Spinner kategori;
     private Button gambar,tambah;
     private ImageView image;
-    private Bitmap bitmap,decoded;
+    private Bitmap bitmap;
     String kat = "1";
     private final int IMG_REQUEST = 1;
     public final static String url = "http://renzvin.com/kouvee/api/produk/create/";
