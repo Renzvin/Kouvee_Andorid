@@ -110,13 +110,15 @@ public class EditProdukActivity extends AppCompatActivity implements View.OnClic
             @Override
             public void onClick(View view) {
                 Create(nama.getText().toString(), stock.getText().toString(), harga.getText().toString(), kat, bitmap);
+                progDialog();
+                waitingResponse();
             }
         });
         getSupportActionBar().hide();
     }
 
     private void progDialog() {
-        dialog.setMessage("Mohon menunggu...");
+        dialog.setMessage("Sedang mengubah data...");
         dialog.show();
     }
 

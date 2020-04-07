@@ -1,17 +1,9 @@
-package com.app.p3l.ui.CRUDdata;
+package com.app.p3l.CRUDActivity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,21 +12,23 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.android.volley.DefaultRetryPolicy;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.app.p3l.Activity.CSActivity;
-import com.app.p3l.Activity.DescProdukActivity;
-import com.app.p3l.Activity.LoginActivity;
-import com.app.p3l.Activity.MainActivity;
 import com.app.p3l.DAO.Kategori_ProdukDAO;
 import com.app.p3l.Endpoints.VolleyMultiPartRequest;
 import com.app.p3l.R;
@@ -43,74 +37,19 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOError;
 import java.io.IOException;
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+public class CreateProdukActivity extends AppCompatActivity implements View.OnClickListener{
 
-import android.app.Activity;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
-import android.provider.MediaStore;
-import android.util.Base64;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.Spinner;
-import android.widget.Toast;
-
-import com.android.volley.AuthFailureError;
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.NetworkResponse;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.app.p3l.R;
-
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOError;
-import java.io.IOException;
-import java.net.URI;
-import java.util.HashMap;
-import java.util.Map;
-
-import static com.firebase.ui.auth.AuthUI.TAG;
-import static com.firebase.ui.auth.AuthUI.getApplicationContext;
-
-
-public class CreateProdukFragment extends Fragment implements  View.OnClickListener{
     private EditText nama,stock,harga;
     private Spinner kategori;
-    private Button gambar,tambah;
+    private Button tambah;
+    private ImageButton gambar;
     private ImageView image;
     private Bitmap bitmap;
     String kat = "1";
@@ -119,18 +58,14 @@ public class CreateProdukFragment extends Fragment implements  View.OnClickListe
     List<Kategori_ProdukDAO> kategori_produkDAOS = new ArrayList<>();
     List<String> temp = new ArrayList<String>();
 
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View View =  inflater.inflate(R.layout.fragment_create_produk, container, false);
-        return View;
-    }
-
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        nama = (EditText) getView().findViewById(R.id.P_Nama);
-        stock = (EditText) getView().findViewById(R.id.P_Stock);
-        harga = (EditText) getView().findViewById(R.id.P_Harga);
-        kategori = (Spinner) getView().findViewById(R.id.spinner_produk);
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_create_produk);
+        nama = (EditText) findViewById(R.id.P_Nama);
+        stock = (EditText) findViewById(R.id.P_Stock);
+        harga = (EditText) findViewById(R.id.P_Harga);
+        kategori = (Spinner) findViewById(R.id.spinner_produk);
         setSpinner();
         kategori.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -148,10 +83,10 @@ public class CreateProdukFragment extends Fragment implements  View.OnClickListe
 
             }
         });
-        image = (ImageView) getView().findViewById(R.id.imageProduk);
-        gambar = (Button) getView().findViewById(R.id.P_foto);
+        image = (ImageView) findViewById(R.id.imageProduk);
+        gambar = (ImageButton) findViewById(R.id.P_foto);
         gambar.setOnClickListener(this);
-        tambah = (Button) getView().findViewById(R.id.btnTambah);
+        tambah = (Button) findViewById(R.id.btnTambah);
         tambah.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -175,16 +110,16 @@ public class CreateProdukFragment extends Fragment implements  View.OnClickListe
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Toast.makeText(getActivity().getApplicationContext(), "", Toast.LENGTH_SHORT).show();
-        if(resultCode == getActivity().RESULT_OK){
+        Toast.makeText(getApplicationContext(), "", Toast.LENGTH_SHORT).show();
+        if(resultCode == RESULT_OK){
             Uri path = data.getData();
             try{
-                Toast.makeText(getContext(), path.toString(), Toast.LENGTH_SHORT).show();
-                bitmap = MediaStore.Images.Media.getBitmap(getActivity().getApplicationContext().getContentResolver(),path);
+                Toast.makeText(getApplicationContext(), path.toString(), Toast.LENGTH_SHORT).show();
+                bitmap = MediaStore.Images.Media.getBitmap(getApplicationContext().getContentResolver(),path);
                 image.setImageBitmap(getResizedBitmap(bitmap, 1024));
-                Toast.makeText(getActivity().getApplicationContext(), "Successfully get image", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Successfully get image", Toast.LENGTH_SHORT).show();
             }catch (IOException e){
-                Toast.makeText(getActivity().getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -206,7 +141,7 @@ public class CreateProdukFragment extends Fragment implements  View.OnClickListe
 
     private void setSpinner(){
         String url = "http://renzvin.com/kouvee/api/KategoriProduk/";
-        RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
 
         StringRequest getRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
@@ -224,7 +159,7 @@ public class CreateProdukFragment extends Fragment implements  View.OnClickListe
                             for (int i = 0; i < kategori_produkDAOS.size(); i++){
                                 temp.add(kategori_produkDAOS.get(i).getNama().toString());
                             }
-                            ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item,temp);
+                            ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,temp);
                             spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                             kategori.setAdapter(spinnerArrayAdapter);
                         } catch (JSONException e) {
@@ -235,7 +170,7 @@ public class CreateProdukFragment extends Fragment implements  View.OnClickListe
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getActivity().getApplicationContext(),"Gagal Fetch Data",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"Gagal Fetch Data",Toast.LENGTH_SHORT).show();
                     }
                 });
         queue.add(getRequest);
@@ -250,7 +185,7 @@ public class CreateProdukFragment extends Fragment implements  View.OnClickListe
                     public void onResponse(NetworkResponse response) {
                         try {
                             JSONObject obj = new JSONObject(new String(response.data));
-                            Toast.makeText(getActivity().getApplicationContext(), "Sukses Membuat Data", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Sukses Membuat Data", Toast.LENGTH_SHORT).show();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -259,7 +194,7 @@ public class CreateProdukFragment extends Fragment implements  View.OnClickListe
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getActivity().getApplicationContext(), "Gagal Membuat Data", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Gagal Membuat Data", Toast.LENGTH_SHORT).show();
                     }
                 }) {
 
@@ -292,7 +227,7 @@ public class CreateProdukFragment extends Fragment implements  View.OnClickListe
         };
 
         // adding the request to volley
-        Volley.newRequestQueue(getActivity().getApplicationContext()).add(volleyMultipartRequest);
+        Volley.newRequestQueue(getApplicationContext()).add(volleyMultipartRequest);
     }
 
     @Override
@@ -303,5 +238,4 @@ public class CreateProdukFragment extends Fragment implements  View.OnClickListe
                 break;
         }
     }
-
 }

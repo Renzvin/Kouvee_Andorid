@@ -1,32 +1,41 @@
 package com.app.p3l.ui.CRUDdata;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.app.p3l.Adapter.EditProdukAdapter;
+import com.app.p3l.Adapter.EditDeleteProdukAdapter;
 import com.app.p3l.Adapter.ProdukAdapter;
+import com.app.p3l.CRUDActivity.CreateHewanActivity;
+import com.app.p3l.CRUDActivity.CreateProdukActivity;
 import com.app.p3l.DAO.ProdukDAO;
-import com.app.p3l.Endpoints.VolleyMultiPartRequest;
 import com.app.p3l.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,25 +44,35 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+public class CRUDProdukFragment extends Fragment  {
 
-public class EditProdukFragment extends Fragment {
     private RecyclerView produkRecycler;
-    private EditProdukAdapter produkAdapter;
+    private EditDeleteProdukAdapter produkAdapter;
+    private FloatingActionButton create;
     List<ProdukDAO> produk = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v =  inflater.inflate(R.layout.recycle, container, false);
+        View v =  inflater.inflate(R.layout.produk_recycler, container, false);
         return v;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        produkRecycler =  (RecyclerView) getView().findViewById(R.id.recycler);
+        getProduk();
+        produkRecycler =  (RecyclerView) getView().findViewById(R.id.produk_recycler);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity().getApplicationContext(),3);
-        produkAdapter = new EditProdukAdapter(produk,getContext());
+        produkAdapter = new EditDeleteProdukAdapter(produk,getContext());
         produkRecycler.setLayoutManager(gridLayoutManager);
         produkRecycler.setAdapter(produkAdapter);
+        create = (FloatingActionButton) getView().findViewById(R.id.create_produk);
+        create.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity().getApplicationContext(), CreateProdukActivity.class);
+                startActivity(intent);
+            }
+        });
         EditText search = getView().findViewById(R.id.search_bar);
         search.addTextChangedListener(new TextWatcher() {
             @Override
@@ -71,7 +90,6 @@ public class EditProdukFragment extends Fragment {
                 filter(s.toString());
             }
         });
-
         getProduk();
     }
 
@@ -86,8 +104,9 @@ public class EditProdukFragment extends Fragment {
     }
 
     private void getProduk() {
-        String url = "http://renzvin.com/kouvee/api/produk/";
+        String url = "http://renzvin.com/kouvee/api/Produk/";
         RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
+
         StringRequest getRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override

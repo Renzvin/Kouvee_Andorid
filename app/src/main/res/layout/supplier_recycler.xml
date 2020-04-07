@@ -10,6 +10,7 @@
         android:drawableLeft="@drawable/places_ic_search"
         android:hint="Cari berdasarkan nama"
         android:textSize="14sp"
+        android:layout_marginLeft="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -18,7 +19,7 @@
         tools:layout_editor_absoluteX="0dp" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/floating_ukuran_recycler"
+        android:id="@+id/supplier_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="28dp"
@@ -27,7 +28,7 @@
         tools:layout_editor_absoluteY="0dp"></androidx.recyclerview.widget.RecyclerView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/create_ukuran_hewan"
+        android:id="@+id/create_supplier"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/more"

@@ -1,11 +1,15 @@
 package com.app.p3l.ui.CRUDdata;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -16,45 +20,58 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.app.p3l.Adapter.DeleteSupplierAdapter;
-import com.app.p3l.Adapter.EditSupplierAdapter;
-import com.app.p3l.DAO.ProdukDAO;
+import com.app.p3l.Adapter.EditDeleteSupplierAdapter;
+import com.app.p3l.CRUDActivity.CreateLayananActivity;
+import com.app.p3l.CRUDActivity.CreateSupplierActivity;
 import com.app.p3l.DAO.SupplierDAO;
 import com.app.p3l.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class DeleteSupplierFragment extends Fragment {
+public class CRUDSupplierFragment extends Fragment {
     private RecyclerView supplierRecycler;
-    private DeleteSupplierAdapter supplierAdapter;
+    private EditDeleteSupplierAdapter supplierAdapter;
+    private FloatingActionButton create;
     List<SupplierDAO> supplier = new ArrayList<>();
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v =  inflater.inflate(R.layout.recycle, container, false);
+        View v =  inflater.inflate(R.layout.supplier_recycler, container, false);
         return v;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        supplierRecycler =  (RecyclerView) getView().findViewById(R.id.recycler);
+        supplierRecycler =  (RecyclerView) getView().findViewById(R.id.supplier_recycler);
         RecyclerView.LayoutManager manager = new LinearLayoutManager(getActivity().getApplicationContext());
-        supplierAdapter = new DeleteSupplierAdapter(supplier, getContext());
+        supplierAdapter = new EditDeleteSupplierAdapter(supplier, getContext());
         supplierRecycler.setLayoutManager(manager);
         supplierRecycler.setAdapter(supplierAdapter);
+        create = (FloatingActionButton) getView().findViewById(R.id.create_supplier);
+        create.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity().getApplicationContext(), CreateSupplierActivity.class);
+                startActivity(intent);
+            }
+        });
         new ItemTouchHelper(supplierMoveCallback).attachToRecyclerView(supplierRecycler);
         EditText search = getView().findViewById(R.id.search_bar);
         search.addTextChangedListener(new TextWatcher() {
@@ -73,6 +90,7 @@ public class DeleteSupplierFragment extends Fragment {
                 filter(s.toString());
             }
         });
+
         getSupplier();
     }
 
@@ -99,6 +117,38 @@ public class DeleteSupplierFragment extends Fragment {
             supplierAdapter.notifyDataSetChanged();
         }
     };
+
+    private void showDialog(int position) {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity().getApplicationContext());
+
+        // set title dialog
+        alertDialogBuilder.setTitle("Perubahan Data Supplier");
+
+        // set pesan dari dialog
+        alertDialogBuilder
+                .setMessage("Apakah anda yakin ingin menghapus data ini?")
+                .setIcon(R.drawable.paw)
+                .setCancelable(false)
+                .setPositiveButton("Delete",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //Edit
+                        supplierAdapter.deleteItem(position);
+                        supplierAdapter.notifyDataSetChanged();
+                    }
+                })
+                .setNegativeButton("Back",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //Delete
+                        dialog.cancel();
+                    }
+                });
+
+        // membuat alert dialog dari builder
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // menampilkan alert dialog
+        alertDialog.show();
+    }
 
 
     private void getSupplier() {

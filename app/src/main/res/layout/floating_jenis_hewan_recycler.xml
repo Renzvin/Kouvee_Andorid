@@ -8,6 +8,9 @@
 
     <EditText
         android:id="@+id/search_bar"
+        android:drawableLeft="@drawable/places_ic_search"
+        android:hint="Cari berdasarkan nama"
+        android:textSize="14sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"

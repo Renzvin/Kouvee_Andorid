@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -51,7 +52,8 @@ import java.util.Map;
 
 public class EditLayananActivity extends AppCompatActivity implements View.OnClickListener{
     private EditText nama,harga;
-    private Button gambar,edit;
+    private Button edit;
+    private ImageButton gambar;
     private ImageView image;
     private Bitmap bitmap;
     private Handler mHandler = new Handler();
@@ -70,7 +72,7 @@ public class EditLayananActivity extends AppCompatActivity implements View.OnCli
         setContentView(R.layout.activity_edit_layanan);
         nama = (EditText) findViewById(R.id.edit_L_Nama);
         harga = (EditText) findViewById(R.id.edit_L_Harga);
-        gambar = (Button) findViewById(R.id.edit_L_foto);
+        gambar = (ImageButton) findViewById(R.id.edit_L_foto);
         image = (ImageView) findViewById(R.id.edit_imageLayanan);
         dialog = new ProgressDialog(this);
         gambar.setOnClickListener(new View.OnClickListener() {
@@ -95,7 +97,7 @@ public class EditLayananActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void progDialog() {
-        dialog.setMessage("Mohon menunggu...");
+        dialog.setMessage("Sedang mengubah data...");
         dialog.show();
     }
 

@@ -7,13 +7,13 @@
     tools:context=".ui.customer.CustomerFragment">
 
     <Button
-        android:id="@+id/Ledit"
+        android:id="@+id/btnTambah"
         android:layout_width="181dp"
         android:layout_height="57dp"
-        android:layout_marginBottom="212dp"
+        android:layout_marginBottom="72dp"
         android:background="@drawable/button_shape"
         android:fontFamily="@font/amaranth_bold"
-        android:text="Ubah"
+        android:text="Tambah"
         android:textAllCaps="false"
         android:textColor="#ff9b9b"
         android:textSize="22sp"
@@ -21,8 +21,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.521"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_L_Harga"
-        app:layout_constraintVertical_bias="0.839" />
+        app:layout_constraintTop_toBottomOf="@+id/L_Harga"
+        app:layout_constraintVertical_bias="0.376" />
 
     <TextView
         android:id="@+id/txtnamalayanan"
@@ -55,11 +55,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.201"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_L_Nama"
+        app:layout_constraintTop_toBottomOf="@+id/L_Nama"
         app:layout_constraintVertical_bias="0.002" />
 
     <EditText
-        android:id="@+id/edit_L_Harga"
+        android:id="@+id/L_Harga"
         android:layout_width="200dp"
         android:layout_height="40dp"
         android:ems="10"
@@ -75,7 +75,7 @@
         app:layout_constraintVertical_bias="0.002" />
 
     <EditText
-        android:id="@+id/edit_L_Nama"
+        android:id="@+id/L_Nama"
         android:layout_width="200dp"
         android:layout_height="40dp"
         android:ems="10"
@@ -91,7 +91,7 @@
         app:layout_constraintVertical_bias="0.002" />
 
     <ImageButton
-        android:id="@+id/edit_L_foto"
+        android:id="@+id/L_foto"
         android:layout_width="89dp"
         android:layout_height="37dp"
         android:background="@drawable/button_nofill_border"
@@ -100,12 +100,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.508"
-        app:layout_constraintStart_toEndOf="@+id/edit_imageLayanan"
+        app:layout_constraintStart_toEndOf="@+id/imageLayanan"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.187" />
 
     <ImageView
-        android:id="@+id/edit_imageLayanan"
+        android:id="@+id/imageLayanan"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_gravity="center_horizontal"

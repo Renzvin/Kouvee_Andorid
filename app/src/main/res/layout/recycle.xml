@@ -3,9 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginLeft="5dp"
     android:orientation="vertical">
     <EditText
         android:id="@+id/search_bar"
+        android:drawableLeft="@drawable/places_ic_search"
+        android:hint="Cari berdasarkan nama"
+        android:textSize="14sp"
+        android:layout_marginLeft="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:layout_editor_absoluteX="0dp" />

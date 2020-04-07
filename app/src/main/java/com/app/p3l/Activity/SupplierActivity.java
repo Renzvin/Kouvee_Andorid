@@ -14,11 +14,9 @@ public class SupplierActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_supplier);
+        setContentView(R.layout.view_pager);
         SectionSupplierPagerAdapter sectionsPagerAdapter = new SectionSupplierPagerAdapter(this, getSupportFragmentManager());
-        ViewPager viewPager = findViewById(R.id.sup_view_pager);
+        ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
-        TabLayout tabs = findViewById(R.id.sup_tabs);
-        tabs.setupWithViewPager(viewPager);
     }
 }

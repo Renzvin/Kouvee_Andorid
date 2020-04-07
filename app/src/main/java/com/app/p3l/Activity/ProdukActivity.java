@@ -7,17 +7,14 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.app.p3l.Adapter.SectionProdukPagerAdapter;
 import com.app.p3l.R;
-import com.google.android.material.tabs.TabLayout;
 
 public class ProdukActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_produk);
+        setContentView(R.layout.view_pager);
         SectionProdukPagerAdapter sectionsPagerAdapter = new SectionProdukPagerAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
-        TabLayout tabs = findViewById(R.id.tabs);
-        tabs.setupWithViewPager(viewPager);
     }
 }

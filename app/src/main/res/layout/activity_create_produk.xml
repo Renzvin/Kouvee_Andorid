@@ -7,12 +7,12 @@
     tools:context=".ui.customer.CustomerFragment">
 
     <Button
-        android:id="@+id/Pedit"
+        android:id="@+id/btnTambah"
         android:layout_width="181dp"
         android:layout_height="49dp"
         android:background="@drawable/button_shape"
         android:fontFamily="@font/amaranth_bold"
-        android:text="Ubah"
+        android:text="Tambah"
         android:textAllCaps="false"
         android:textColor="#ff9b9b"
         android:textSize="22sp"
@@ -20,11 +20,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.543"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_spinner_produk"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_produk"
         app:layout_constraintVertical_bias="0.391" />
 
     <ImageButton
-        android:id="@+id/edit_P_foto"
+        android:id="@+id/P_foto"
         android:layout_width="77dp"
         android:layout_height="47dp"
         android:background="@drawable/button_nofill_border"
@@ -39,7 +39,7 @@
         app:layout_constraintVertical_bias="0.13" />
 
     <Spinner
-        android:id="@+id/edit_spinner_produk"
+        android:id="@+id/spinner_produk"
         android:layout_width="139dp"
         android:layout_height="27dp"
         android:layout_marginBottom="240dp"
@@ -47,7 +47,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.577"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_P_Harga"
+        app:layout_constraintTop_toBottomOf="@+id/P_Harga"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -68,7 +68,7 @@
         app:layout_constraintVertical_bias="0.29" />
 
     <EditText
-        android:id="@+id/edit_P_Stock"
+        android:id="@+id/P_Stock"
         android:layout_width="200dp"
         android:layout_height="37dp"
         android:ems="10"
@@ -84,7 +84,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:id="@+id/edit_P_Harga"
+        android:id="@+id/P_Harga"
         android:layout_width="200dp"
         android:layout_height="37dp"
         android:ems="10"
@@ -94,13 +94,13 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.559"
+        app:layout_constraintHorizontal_bias="0.644"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtharga"
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:id="@+id/edit_P_Nama"
+        android:id="@+id/P_Nama"
         android:layout_width="200dp"
         android:layout_height="37dp"
         android:ems="10"
@@ -129,7 +129,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.265"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_P_Nama"
+        app:layout_constraintTop_toBottomOf="@+id/P_Nama"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -146,7 +146,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.265"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_P_Stock"
+        app:layout_constraintTop_toBottomOf="@+id/P_Stock"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -163,11 +163,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.265"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_P_Harga"
+        app:layout_constraintTop_toBottomOf="@+id/P_Harga"
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
-        android:id="@+id/edit_imageProduk"
+        android:id="@+id/imageProduk"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_gravity="center_horizontal"

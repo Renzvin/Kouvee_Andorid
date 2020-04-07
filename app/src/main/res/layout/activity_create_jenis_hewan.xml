@@ -6,57 +6,56 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
-        android:layout_width="269dp"
-        android:layout_height="165dp"
-        android:background="#F3C7DB"
+    <TextView
+        android:id="@+id/txtjenishewan"
+        android:layout_width="128dp"
+        android:layout_height="29dp"
+        android:fontFamily="@font/amaranth_bold"
+        android:text="Jenis Hewan"
+        android:textAlignment="textStart"
+        android:textColor="#ff9b9b"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.57"
+        app:layout_constraintHorizontal_bias="0.201"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.593">
+        app:layout_constraintVertical_bias="0.232" />
 
-        <Button
-            android:id="@+id/jenis_tambah"
-            android:layout_width="114dp"
-            android:layout_height="51dp"
-            android:background="@drawable/background"
-            android:text="TAMBAH"
-            android:textAllCaps="false"
-            android:textColor="#000000"
-            android:textSize="22sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
 
-        <EditText
-            android:id="@+id/create_nama_jenis"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Jenis Hewan"
-            android:inputType="textPersonName"
-            android:textColor="#000000"
-            android:textColorHint="#000000"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="387dp"
-        android:layout_height="53dp"
-        android:text="TAMBAH JENIS HEWAN"
-        android:textSize="35dp"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+    <Button
+        android:id="@+id/jenis_tambah"
+        android:layout_width="181dp"
+        android:layout_height="51dp"
+        android:background="@drawable/button_shape"
+        android:fontFamily="@font/amaranth_bold"
+        android:text="Tambah"
+        android:textAllCaps="false"
+        android:textColor="#ff9b9b"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintHorizontal_bias="0.542"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.671" />
+        app:layout_constraintTop_toBottomOf="@+id/create_nama_jenis"
+        app:layout_constraintVertical_bias="0.203" />
+
+    <EditText
+        android:id="@+id/create_nama_jenis"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textColor="#000000"
+        android:textColorHint="#000000"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.559"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtjenishewan"
+        app:layout_constraintVertical_bias="0.0" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

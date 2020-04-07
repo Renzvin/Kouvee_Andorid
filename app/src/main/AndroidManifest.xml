@@ -42,47 +42,74 @@
             android:label="Layanan">
 
         </activity>
-        <activity android:name=".CRUDActivity.EditProdukActivity">
+        <activity android:name=".CRUDActivity.CreateProdukActivity"
+            android:label="Buat Data Produk">
 
         </activity>
-        <activity android:name=".CRUDActivity.EditLayananActivity">
+        <activity android:name=".CRUDActivity.CreateLayananActivity"
+            android:label="Buat Data Layanan">
+
+        </activity>
+        <activity android:name=".CRUDActivity.CreateSupplierActivity"
+            android:label="Buat Data Supplier">
+
+        </activity>
+        <activity android:name=".CRUDActivity.EditProdukActivity"
+            android:label="Ubah Data Produk">
+
+        </activity>
+        <activity android:name=".CRUDActivity.EditLayananActivity"
+            android:label="Ubah Data Layanan">
 
         </activity>
         <activity android:name=".Activity.SupplierActivity"
             android:label="Supplier">
 
         </activity>
-        <activity android:name=".CRUDActivity.EditSupplierActivity">
+        <activity android:name=".CRUDActivity.EditSupplierActivity"
+            android:label="Ubah Data Supplier">
 
         </activity>
         <activity android:name=".Activity.HewanActivity"
             android:label="Hewan">
 
         </activity>
-        <activity android:name=".CRUDActivity.EditUkuranHewanActivity">
+        <activity android:name=".CRUDActivity.EditUkuranHewanActivity"
+            android:label="Ubah Data Ukuran Hewan">
 
         </activity>
-        <activity android:name=".CRUDActivity.CreateUkuranHewanActivity">
+        <activity android:name=".CRUDActivity.CreateUkuranHewanActivity"
+            android:label="Buat Data Ukuran Hewan">
 
         </activity>
-        <activity android:name=".CRUDActivity.CreateJenisHewanActivity">
+        <activity android:name=".CRUDActivity.CreateJenisHewanActivity"
+            android:label="Buat Data Jenis Hewan">
 
         </activity>
-        <activity android:name=".CRUDActivity.EditJenisHewanActivity">
+        <activity android:name=".CRUDActivity.EditJenisHewanActivity"
+            android:label="Ubah Data Jenis Hewan">
 
         </activity>
-        <activity android:name=".Activity.DescProdukActivity">
+        <activity android:name=".Activity.DescProdukActivity"
+            android:label="Detail Produk">
 
         </activity>
-        <activity android:name=".Activity.DescLayananActivity">
+        <activity android:name=".Activity.DescLayananActivity"
+            android:label="Detail Layanan">
 
         </activity>
-        <activity android:name=".CRUDActivity.CreateHewanActivity">
+        <activity android:name=".CRUDActivity.CreateHewanActivity"
+            android:label="Buat Data Hewan">
 
         </activity>
-        <activity android:name=".CRUDActivity.EditHewanActivity">
+        <activity android:name=".CRUDActivity.EditHewanActivity"
+            android:label="Edit Data Hewan">
 
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

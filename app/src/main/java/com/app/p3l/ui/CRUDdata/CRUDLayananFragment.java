@@ -1,13 +1,7 @@
 package com.app.p3l.ui.CRUDdata;
 
+import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -16,17 +10,24 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.app.p3l.Adapter.EditLayananAdapter;
-import com.app.p3l.Adapter.ProdukAdapter;
+import com.app.p3l.Adapter.EditDeleteLayananAdapter;
+import com.app.p3l.CRUDActivity.CreateLayananActivity;
+import com.app.p3l.CRUDActivity.CreateProdukActivity;
 import com.app.p3l.DAO.LayananDAO;
-import com.app.p3l.DAO.ProdukDAO;
 import com.app.p3l.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,26 +36,34 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class EditLayananFragment extends Fragment {
+public class CRUDLayananFragment extends Fragment {
     private RecyclerView layananRecycler;
-    private EditLayananAdapter layananAdapter;
+    private EditDeleteLayananAdapter layananAdapter;
+    private FloatingActionButton create;
     List<LayananDAO> layanan = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v =  inflater.inflate(R.layout.recycle, container, false);
+        View v =  inflater.inflate(R.layout.layanan_recycler, container, false);
         return v;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        layananRecycler =  (RecyclerView) getView().findViewById(R.id.recycler);
+        layananRecycler =  (RecyclerView) getView().findViewById(R.id.layanan_recycler);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity().getApplicationContext(),3);
-        layananAdapter = new EditLayananAdapter(layanan,getContext());
+        layananAdapter = new EditDeleteLayananAdapter(layanan,getContext());
         layananRecycler.setLayoutManager(gridLayoutManager);
         layananRecycler.setAdapter(layananAdapter);
         EditText search = getView().findViewById(R.id.search_bar);
+        create = (FloatingActionButton) getView().findViewById(R.id.create_layanan);
+        create.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity().getApplicationContext(), CreateLayananActivity.class);
+                startActivity(intent);
+            }
+        });
         search.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
