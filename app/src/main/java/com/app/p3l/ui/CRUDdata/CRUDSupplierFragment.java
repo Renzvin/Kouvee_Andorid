@@ -72,7 +72,6 @@ public class CRUDSupplierFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        new ItemTouchHelper(supplierMoveCallback).attachToRecyclerView(supplierRecycler);
         EditText search = getView().findViewById(R.id.search_bar);
         search.addTextChangedListener(new TextWatcher() {
             @Override
@@ -103,53 +102,6 @@ public class CRUDSupplierFragment extends Fragment {
         }
         supplierAdapter.filterList(example);
     }
-
-    ItemTouchHelper.SimpleCallback supplierMoveCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
-        @Override
-        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-            return false;
-        }
-
-        @Override
-        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-            int temp = viewHolder.getAdapterPosition();
-            supplierAdapter.deleteItem(temp);
-            supplierAdapter.notifyDataSetChanged();
-        }
-    };
-
-    private void showDialog(int position) {
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity().getApplicationContext());
-
-        // set title dialog
-        alertDialogBuilder.setTitle("Perubahan Data Supplier");
-
-        // set pesan dari dialog
-        alertDialogBuilder
-                .setMessage("Apakah anda yakin ingin menghapus data ini?")
-                .setIcon(R.drawable.paw)
-                .setCancelable(false)
-                .setPositiveButton("Delete",new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        //Edit
-                        supplierAdapter.deleteItem(position);
-                        supplierAdapter.notifyDataSetChanged();
-                    }
-                })
-                .setNegativeButton("Back",new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        //Delete
-                        dialog.cancel();
-                    }
-                });
-
-        // membuat alert dialog dari builder
-        AlertDialog alertDialog = alertDialogBuilder.create();
-
-        // menampilkan alert dialog
-        alertDialog.show();
-    }
-
 
     private void getSupplier() {
         String url = "http://renzvin.com/kouvee/api/supplier/";

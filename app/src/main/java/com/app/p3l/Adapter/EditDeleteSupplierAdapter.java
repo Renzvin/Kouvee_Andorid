@@ -28,6 +28,8 @@ import com.app.p3l.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -60,12 +62,12 @@ public class EditDeleteSupplierAdapter extends RecyclerView.Adapter<EditDeleteSu
         holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDialog(temp);
+                showDialog(temp,position);
             }
         });
     }
 
-    private void showDialog(int position) {
+    private void showDialog(int temp,int position) {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
 
         // set title dialog
@@ -85,13 +87,13 @@ public class EditDeleteSupplierAdapter extends RecyclerView.Adapter<EditDeleteSu
                 .setNegativeButton("Delete",new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         //Delete
-                        deleteItem(position);
+                        deleteItem(temp,position);
                     }
                 })
-                .setNeutralButton("Back",new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        //Delete
-                        dialog.cancel();
+                .setNeutralButton("Back", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
                     }
                 });
 
@@ -113,9 +115,7 @@ public class EditDeleteSupplierAdapter extends RecyclerView.Adapter<EditDeleteSu
         context.startActivity(intent);
     }
 
-    public void deleteItem(int position) {
-        final SupplierDAO row = supplier.get(position);
-        int temp = row.getId();
+    public void deleteItem(int temp,int position) {
         supplier.remove(position);
         final String url = "http://renzvin.com/kouvee/api/supplier/delete/";
         RequestQueue queue = Volley.newRequestQueue(context.getApplicationContext());
@@ -125,6 +125,7 @@ public class EditDeleteSupplierAdapter extends RecyclerView.Adapter<EditDeleteSu
                     public void onResponse(String response) {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
+                            notifyItemRemoved(position);
                             Toast.makeText(context,"Berhasil Hapus Data",Toast.LENGTH_SHORT).show();
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -139,8 +140,11 @@ public class EditDeleteSupplierAdapter extends RecyclerView.Adapter<EditDeleteSu
         {
             @Override
             protected Map<String, String> getParams() {
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy-hh-mm-ss");
+                String format = simpleDateFormat.format(new Date());
                 Map<String, String> params = new HashMap<>();
-                params.put("id", Integer.toString(position));
+                params.put("id", Integer.toString(temp));
+                params.put("deleted_at", format);
                 return params;
             }
         };

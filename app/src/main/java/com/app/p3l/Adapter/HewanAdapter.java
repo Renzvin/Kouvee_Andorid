@@ -26,6 +26,7 @@ import com.app.p3l.DAO.HewanDAO;
 import com.app.p3l.DAO.Jenis_HewanDAO;
 import com.app.p3l.DAO.SupplierDAO;
 import com.app.p3l.R;
+import com.app.p3l.Temporary.TemporaryRoleId;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -98,6 +99,7 @@ public class HewanAdapter extends  RecyclerView.Adapter<HewanAdapter.HewanView> 
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
                 params.put("id", Integer.toString(temp));
+                params.put("pegawai_id",Integer.toString(TemporaryRoleId.id));
                 return params;
             }
         };

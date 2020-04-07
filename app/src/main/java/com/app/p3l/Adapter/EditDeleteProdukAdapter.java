@@ -28,6 +28,7 @@ import com.app.p3l.Activity.LoginActivity;
 import com.app.p3l.Activity.MainActivity;
 import com.app.p3l.CRUDActivity.EditProdukActivity;
 import com.app.p3l.DAO.ProdukDAO;
+import com.app.p3l.DAO.SupplierDAO;
 import com.app.p3l.Endpoints.VolleyMultiPartRequest;
 import com.app.p3l.R;
 import com.app.p3l.Temporary.TemporaryRoleId;
@@ -126,6 +127,7 @@ public class EditDeleteProdukAdapter extends RecyclerView.Adapter<EditDeleteProd
     }
 
     private void deleteProduk(int temp,int position) {
+        produk.remove(position);
         final String url = "http://renzvin.com/kouvee/api/produk/delete/";
         VolleyMultiPartRequest volleyMultipartRequest = new VolleyMultiPartRequest(Request.Method.POST, url,
                 new Response.Listener<NetworkResponse>() {
