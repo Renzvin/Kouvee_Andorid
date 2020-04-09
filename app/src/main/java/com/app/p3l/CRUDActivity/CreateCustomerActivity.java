@@ -100,12 +100,16 @@ public class CreateCustomerActivity extends AppCompatActivity implements DatePic
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
+                int is_member = 1;
+                if(nama.equalsIgnoreCase("Guest")){
+                    is_member = 0;
+                }
                 params.put("nama", nama);
                 params.put("tanggal_lahir", tanggal_lahir);
                 params.put("alamat", alamat);
                 params.put("no_hp", no_hp);
                 params.put("pegawai_id", Integer.toString(TemporaryRoleId.id));
-                params.put("is_member", Integer.toString(1));
+                params.put("is_member", Integer.toString(is_member));
 
                 return params;
             }

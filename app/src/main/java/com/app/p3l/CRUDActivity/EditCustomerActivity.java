@@ -86,7 +86,7 @@ public class EditCustomerActivity extends AppCompatActivity implements DatePicke
                     public void onResponse(String response) {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-                            Toast.makeText(EditCustomerActivity.this,"Sukses Mendaftar Hewan",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(EditCustomerActivity.this,"Sukses Mengubah Customer",Toast.LENGTH_SHORT).show();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -94,19 +94,23 @@ public class EditCustomerActivity extends AppCompatActivity implements DatePicke
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(EditCustomerActivity.this,"Gagal Mendaftar Hewan",Toast.LENGTH_SHORT).show();
+                Toast.makeText(EditCustomerActivity.this,"Gagal Mengubah Customer",Toast.LENGTH_SHORT).show();
             }
         })
         {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
+                int is_member = 1;
+                if(nama.equalsIgnoreCase("Guest")){
+                    is_member = 0;
+                }
                 params.put("nama", nama);
                 params.put("tanggal_lahir", tanggal_lahir);
                 params.put("alamat", alamat);
                 params.put("no_hp", no_hp);
                 params.put("pegawai_id", Integer.toString(TemporaryRoleId.id));
-                params.put("is_member", Integer.toString(1));
+                params.put("is_member", Integer.toString(is_member));
                 params.put("id",getIntent().getStringExtra("Cid"));
 
                 return params;

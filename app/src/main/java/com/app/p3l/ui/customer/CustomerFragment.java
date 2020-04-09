@@ -32,8 +32,5 @@ public class CustomerFragment extends Fragment {
         SectionCustomerPagerAdapter sectionsPagerAdapter = new SectionCustomerPagerAdapter(getActivity().getApplicationContext(),getFragmentManager());
         ViewPager viewPager = getView().findViewById(R.id.customer_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
-        TabLayout tabs = getView().findViewById(R.id.customer_tabs);
-        tabs.setupWithViewPager(viewPager);
-
     }
 }
