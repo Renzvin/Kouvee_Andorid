@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.app.p3l.R;
-import com.app.p3l.ui.customer.CustomerViewModel;
+
 public class CustomerCSFragment extends Fragment {
     private CustomerCSViewModel customerCSViewModel;
 

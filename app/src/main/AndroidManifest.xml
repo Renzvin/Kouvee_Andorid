@@ -106,6 +106,13 @@
             android:label="Edit Data Hewan">
 
         </activity>
+        <activity android:name=".CRUDActivity.CreateCustomerActivity"
+            android:label="Buat Data Customer">
+        </activity>
+        <activity android:name=".CRUDActivity.EditCustomerActivity"
+            android:label="Edit Data Customer">
+
+        </activity>
 
         <meta-data
             android:name="preloaded_fonts"
