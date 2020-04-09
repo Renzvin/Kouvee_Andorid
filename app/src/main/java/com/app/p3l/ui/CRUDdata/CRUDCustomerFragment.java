@@ -89,7 +89,7 @@ public class CRUDCustomerFragment extends Fragment {
             }
         });
 
-        getSupplier();
+        getCustomer();
     }
 
     private void filter(String search){
@@ -102,7 +102,7 @@ public class CRUDCustomerFragment extends Fragment {
         customerAdapter.filterList(example);
     }
 
-    private void getSupplier() {
+    private void getCustomer() {
         String url = "http://renzvin.com/kouvee/api/customer/";
         RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
 
