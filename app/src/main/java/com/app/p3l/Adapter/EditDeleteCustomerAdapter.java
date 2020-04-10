@@ -28,6 +28,7 @@ import com.app.p3l.DAO.CustomerDAO;
 import com.app.p3l.DAO.LayananDAO;
 import com.app.p3l.Endpoints.VolleyMultiPartRequest;
 import com.app.p3l.R;
+import com.app.p3l.Temporary.TemporaryRoleId;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
@@ -141,6 +142,7 @@ public class EditDeleteCustomerAdapter extends RecyclerView.Adapter<EditDeleteCu
                 String format = simpleDateFormat.format(new Date());
                 Map<String, String> params = new HashMap<>();
                 params.put("id", Integer.toString(temp));
+                params.put("pegawai_id", Integer.toString(TemporaryRoleId.id));
                 params.put("deleted_at", format);
                 return params;
             }
@@ -153,7 +155,7 @@ public class EditDeleteCustomerAdapter extends RecyclerView.Adapter<EditDeleteCu
         Intent intent = new Intent(context, EditCustomerActivity.class);
         intent.putExtra("Cnama",row.getNama());
         intent.putExtra("Calamat",row.getAlamat());
-        intent.putExtra("Ctangga",row.getTanggal_lahir());
+        intent.putExtra("Ctanggal",row.getTanggal_lahir());
         intent.putExtra("CnoHP",row.getNo_hp());
         intent.putExtra("Cid",Integer.toString(row.getId()));
         context.startActivity(intent);
