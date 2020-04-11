@@ -4,13 +4,17 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -30,11 +34,17 @@ import java.util.Map;
 
 import org.json.JSONException;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class LoginActivity extends AppCompatActivity {
     private Button login;
     private EditText username,password;
+    private TextView txtsignin;
+    private ConstraintLayout parent;
     private boolean doubleBackToExitPressedOnce;
     private Handler mHandler = new Handler();
+    private Animation topAnim,botAnim;
+    private CircleImageView profile;
 
     String status = "-";
     String data = "-";
@@ -47,8 +57,15 @@ public class LoginActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        topAnim= AnimationUtils.loadAnimation(this,R.anim.top_animation);
+        botAnim= AnimationUtils.loadAnimation(this,R.anim.bottom_animation);
+
         username = (EditText) findViewById(R.id.LUsername);
         password = (EditText) findViewById(R.id.LPassword);
+        profile=(CircleImageView)findViewById(R.id.profile_image);
+        txtsignin=(TextView)findViewById(R.id.txtSignIn);
+        parent=(ConstraintLayout)findViewById(R.id.constraintLayout2);
         dialog = new ProgressDialog(this);
         login = (Button) findViewById(R.id.login);
         login.setOnClickListener(new View.OnClickListener() {
@@ -59,6 +76,14 @@ public class LoginActivity extends AppCompatActivity {
                 waitingResponse();
             }
         });
+
+        profile.setAnimation(topAnim);
+        parent.setAnimation(botAnim);
+        username.setAnimation(botAnim);
+        password.setAnimation(botAnim);
+        login.setAnimation(botAnim);
+        txtsignin.setAnimation(botAnim);
+
         getSupportActionBar().hide();
     }
 
@@ -122,7 +147,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         this.doubleBackToExitPressedOnce = true;
-        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Please click back again to exit and logout", Toast.LENGTH_SHORT).show();
 
         mHandler.postDelayed(mRunnable, 2000);
     }

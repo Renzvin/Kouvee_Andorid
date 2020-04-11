@@ -17,10 +17,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.app.p3l.CRUDActivity.EditCustomerActivity;
 import com.app.p3l.CRUDActivity.EditLayananActivity;
@@ -78,7 +81,7 @@ public class EditDeleteCustomerAdapter extends RecyclerView.Adapter<EditDeleteCu
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
 
         // set title dialog
-        alertDialogBuilder.setTitle("Perubahan Data Layanan");
+        alertDialogBuilder.setTitle("Perubahan Data Customer");
 
         // set pesan dari dialog
         alertDialogBuilder
@@ -112,31 +115,30 @@ public class EditDeleteCustomerAdapter extends RecyclerView.Adapter<EditDeleteCu
     }
 
     private void deleteCustomer(int temp, int position) {
+        customer.remove(position);
         final String url = "http://renzvin.com/kouvee/api/customer/delete/";
-        VolleyMultiPartRequest volleyMultipartRequest = new VolleyMultiPartRequest(Request.Method.POST, url,
-                new Response.Listener<NetworkResponse>() {
+        RequestQueue queue = Volley.newRequestQueue(context.getApplicationContext());
+        StringRequest post = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
                     @Override
-                    public void onResponse(NetworkResponse response) {
-
+                    public void onResponse(String response) {
                         try {
-                            JSONObject obj = new JSONObject(new String(response.data));
+                            JSONObject jsonObject = new JSONObject(response);
                             notifyItemRemoved(position);
-                            Toast.makeText(context, "Sukses Menghapus Data", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context,"Berhasil Hapus Data",Toast.LENGTH_SHORT).show();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(context.getApplicationContext(), "Gagal Menghapus Data", Toast.LENGTH_SHORT).show();
-                    }
-                })
-
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(context,"Gagal Hapus Data",Toast.LENGTH_SHORT).show();
+            }
+        })
         {
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
+            protected Map<String, String> getParams() {
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy-hh-mm-ss");
                 String format = simpleDateFormat.format(new Date());
                 Map<String, String> params = new HashMap<>();
@@ -145,7 +147,14 @@ public class EditDeleteCustomerAdapter extends RecyclerView.Adapter<EditDeleteCu
                 return params;
             }
         };
-        Volley.newRequestQueue(context.getApplicationContext()).add(volleyMultipartRequest);
+        post.setRetryPolicy(
+                new DefaultRetryPolicy(
+                        50000,
+                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+                )
+        );
+        queue.add(post);
     }
 
     private void editCustomer(int position) {
@@ -153,7 +162,7 @@ public class EditDeleteCustomerAdapter extends RecyclerView.Adapter<EditDeleteCu
         Intent intent = new Intent(context, EditCustomerActivity.class);
         intent.putExtra("Cnama",row.getNama());
         intent.putExtra("Calamat",row.getAlamat());
-        intent.putExtra("Ctangga",row.getTanggal_lahir());
+        intent.putExtra("Ctanggal",row.getTanggal_lahir());
         intent.putExtra("CnoHP",row.getNo_hp());
         intent.putExtra("Cid",Integer.toString(row.getId()));
         context.startActivity(intent);

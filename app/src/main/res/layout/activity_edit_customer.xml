@@ -26,17 +26,17 @@
 
     <TextView
         android:id="@+id/txtnamasupplier2"
-        android:layout_width="104dp"
-        android:layout_height="32dp"
+        android:layout_width="114dp"
+        android:layout_height="30dp"
         android:fontFamily="@font/amaranth_bold"
-        android:text="Tanggal Lahir"
+        android:text="Tanggal Lahir :"
         android:textAlignment="textStart"
         android:textColor="#ff9b9b"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.244"
+        app:layout_constraintHorizontal_bias="0.252"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/C_edit_nama"
         app:layout_constraintVertical_bias="0.0" />
@@ -161,13 +161,11 @@
         android:id="@+id/edit_tanggal_lahir"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="456dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/C_edit_alamat"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/create_nama_hewan"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintHorizontal_bias="0.157"
+        app:layout_constraintStart_toEndOf="@+id/txtnamasupplier2"
+        app:layout_constraintTop_toBottomOf="@+id/C_edit_nama"
+        app:layout_constraintVertical_bias="0.2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

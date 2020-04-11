@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -55,7 +56,8 @@ import java.util.Map;
 public class EditProdukActivity extends AppCompatActivity implements View.OnClickListener{
     private EditText nama,stock,harga;
     private Spinner kategori;
-    private Button gambar,edit;
+    private Button edit;
+    private ImageButton gambar;
     private ImageView image;
     private Bitmap bitmap;
     public final static String url = "http://renzvin.com/kouvee/api/produk/update/";
@@ -74,7 +76,7 @@ public class EditProdukActivity extends AppCompatActivity implements View.OnClic
         nama = (EditText) findViewById(R.id.edit_P_Nama);
         stock = (EditText) findViewById(R.id.edit_P_Stock);
         harga = (EditText) findViewById(R.id.edit_P_Harga);
-        gambar = (Button) findViewById(R.id.edit_P_foto);
+        gambar = (ImageButton) findViewById(R.id.edit_P_foto);
         image = (ImageView) findViewById(R.id.edit_imageProduk);
         kategori = (Spinner) findViewById(R.id.edit_spinner_produk);
         dialog = new ProgressDialog(this);
