@@ -49,7 +49,6 @@ public class ProdukCSFragment extends Fragment {
         produkAdapter = new ProdukCSAdapter(getContext(), produk);
         produkRecycler.setLayoutManager(gridLayoutManager);
         produkRecycler.setAdapter(produkAdapter);
-        Toast.makeText(getActivity().getApplicationContext(),Integer.toString(TemporaryRoleId.id),Toast.LENGTH_LONG).show();
         getProduk();
         EditText search = v.findViewById(R.id.search_bar);
         search.addTextChangedListener(new TextWatcher() {

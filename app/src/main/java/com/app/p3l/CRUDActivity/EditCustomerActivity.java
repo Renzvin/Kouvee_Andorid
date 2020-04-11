@@ -48,6 +48,7 @@ public class EditCustomerActivity extends AppCompatActivity implements DatePicke
         tanggal = (TextView)findViewById(R.id.edit_tanggal_lahir);
         nama.setText(getIntent().getStringExtra("Cnama"));
         tanggal.setText(getIntent().getStringExtra("Ctanggal"));
+        temporary = getIntent().getStringExtra("Ctanggal");
         alamat.setText(getIntent().getStringExtra("Calamat"));
         no_hp.setText(getIntent().getStringExtra("CnoHP"));
         date.setOnClickListener(new View.OnClickListener() {

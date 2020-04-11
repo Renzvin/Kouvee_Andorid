@@ -21,15 +21,15 @@ public class CustomerCSFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v =  inflater.inflate(R.layout.fragment_cs_customer, container, false);
+        View v =  inflater.inflate(R.layout.view_pager, container, false);
         return v;
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        SectionCustomerPagerAdapter sectionsPagerAdapter = new SectionCustomerPagerAdapter(getActivity().getApplicationContext(),getFragmentManager());
-        ViewPager viewPager = getView().findViewById(R.id.customer_cs_pager);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        SectionCustomerPagerAdapter sectionsPagerAdapter = new SectionCustomerPagerAdapter(getActivity().getApplicationContext(),getChildFragmentManager());
+        ViewPager viewPager = getView().findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
     }
 }
