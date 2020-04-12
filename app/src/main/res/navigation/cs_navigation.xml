@@ -24,4 +24,9 @@
         android:name="com.app.p3l.ui.hewan_cs.HewanCSFragment"
         android:label="Hewan"
         tools:layout="@layout/fragment_cs_hewan" />
+    <fragment
+        android:id="@+id/nav_logout"
+        android:name="com.app.p3l.ui.Logout.Logout"
+        android:label="Logout"
+        tools:layout="@layout/fragment_logout" />
 </navigation>

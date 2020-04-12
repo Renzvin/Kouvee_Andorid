@@ -68,10 +68,15 @@
         android:id="@+id/nav_customer"
         android:name="com.app.p3l.ui.customer.CustomerFragment"
         android:label="Customer"
-        tools:layout="@layout/fragment_customer" />
+        tools:layout="@layout/view_pager" />
     <fragment
         android:id="@+id/nav_struk"
         android:name="com.app.p3l.ui.struk.StrukFragment"
         android:label="Struk"
         tools:layout="@layout/fragment_struk" />
+    <fragment
+        android:id="@+id/nav_logout"
+        android:name="com.app.p3l.ui.Logout.Logout"
+        android:label="Logout"
+        tools:layout="@layout/fragment_logout" />
 </navigation>
