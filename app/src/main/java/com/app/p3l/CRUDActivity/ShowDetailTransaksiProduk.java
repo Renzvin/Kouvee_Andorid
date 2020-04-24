@@ -194,7 +194,7 @@ public class ShowDetailTransaksiProduk extends AppCompatActivity {
                             String total = jsonObject1.getString("pembayaran");
                             JSONObject jsonObject3 = jsonObject1.getJSONObject("pembayaran");
                             JSONObject object1 = jsonObject3;
-                            total_harga.setText(Integer.toString(object1.getInt("sub_total")));
+                            total_harga.setText(Integer.toString(object1.getInt("total")));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
