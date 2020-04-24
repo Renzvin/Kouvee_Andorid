@@ -1,5 +1,5 @@
 package com.app.p3l.Temporary;
 
-public class TemporaryRoleId {
+public class TemporaryIdPegawai {
     public static int id = 0;
 }

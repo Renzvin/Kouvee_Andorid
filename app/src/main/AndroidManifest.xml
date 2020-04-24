@@ -113,7 +113,21 @@
             android:label="Edit Data Customer">
 
         </activity>
+        <activity android:name=".CRUDActivity.CreateTransaksiProdukActivity">
 
+        </activity>
+        <activity android:name=".Activity.TransaksiProdukActivity">
+
+        </activity>
+        <activity android:name=".CRUDActivity.ShowDetailTransaksiProduk">
+
+        </activity>
+        <activity android:name=".CRUDActivity.PickCustomerActivity">
+
+        </activity>
+        <activity android:name=".CRUDActivity.PickProdukActivity">
+
+        </activity>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -24,12 +23,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.app.p3l.R;
-import com.app.p3l.Temporary.TemporaryRoleId;
+import com.app.p3l.Temporary.TemporaryIdPegawai;
 
 import org.json.JSONObject;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.json.JSONException;
@@ -109,20 +107,20 @@ public class LoginActivity extends AppCompatActivity {
                         Intent i = new Intent(LoginActivity.this,MainActivity.class);
                         i.putExtra("nama",nama);
                         i.putExtra("role",role);
-                        TemporaryRoleId.id = id;
+                        TemporaryIdPegawai.id = id;
                         startActivity(i);
                     } else if(role.equalsIgnoreCase("CS")){
                         Intent i = new Intent(LoginActivity.this,CSActivity.class);
                         i.putExtra("nama",nama);
                         i.putExtra("role",role);
-                        TemporaryRoleId.id = id;
+                        TemporaryIdPegawai.id = id;
                         startActivity(i);
                     } else{
-                        Toast.makeText(LoginActivity.this,"Role anda tidak jelas",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this,"Role anda tidak dapat mengakses aplikasi ini",Toast.LENGTH_SHORT).show();
                     }
                 }
                 else{
-                    Toast.makeText(LoginActivity.this, "Email / password salah", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Username / password salah", Toast.LENGTH_SHORT).show();
                 }
 
 

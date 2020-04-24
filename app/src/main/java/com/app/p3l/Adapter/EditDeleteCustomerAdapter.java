@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,9 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -26,13 +23,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.app.p3l.CRUDActivity.EditCustomerActivity;
-import com.app.p3l.CRUDActivity.EditLayananActivity;
 import com.app.p3l.DAO.CustomerDAO;
-import com.app.p3l.DAO.LayananDAO;
-import com.app.p3l.Endpoints.VolleyMultiPartRequest;
 import com.app.p3l.R;
-import com.app.p3l.Temporary.TemporaryRoleId;
-import com.squareup.picasso.Picasso;
+import com.app.p3l.Temporary.TemporaryIdPegawai;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -144,7 +137,7 @@ public class EditDeleteCustomerAdapter extends RecyclerView.Adapter<EditDeleteCu
                 String format = simpleDateFormat.format(new Date());
                 Map<String, String> params = new HashMap<>();
                 params.put("id", Integer.toString(temp));
-                params.put("pegawai_id", Integer.toString(TemporaryRoleId.id));
+                params.put("pegawai_id", Integer.toString(TemporaryIdPegawai.id));
                 params.put("deleted_at", format);
                 return params;
             }
