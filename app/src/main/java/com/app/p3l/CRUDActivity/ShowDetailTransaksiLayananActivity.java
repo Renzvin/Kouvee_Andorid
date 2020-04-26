@@ -13,7 +13,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,16 +25,19 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.app.p3l.Adapter.DeskripsiTransaksiLayananAdapter;
 import com.app.p3l.Adapter.DeskripsiTransaksiProdukAdapter;
-import com.app.p3l.DAO.SupplierDAO;
 import com.app.p3l.Endpoints.VolleyMultiPartRequest;
 import com.app.p3l.R;
 import com.app.p3l.Temporary.PickCustomer;
+import com.app.p3l.Temporary.PickHewan;
 import com.app.p3l.Temporary.ProdukTemp;
 import com.app.p3l.Temporary.TempCustomer;
+import com.app.p3l.Temporary.TempHewan;
+import com.app.p3l.Temporary.TempListPickLayanan;
 import com.app.p3l.Temporary.TempListPickProduk;
+import com.app.p3l.Temporary.TempMultipleLayanan;
 import com.app.p3l.Temporary.TemporaryIdPegawai;
-import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -48,12 +50,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ShowDetailTransaksiProduk extends AppCompatActivity {
-    private TextView nama,alamat,no_hp,total_harga;
+public class ShowDetailTransaksiLayananActivity extends AppCompatActivity {
+    private TextView nama,alamat,no_hp,total_harga,nama_hewan,jenis_hewan;
     private Button aksi;
     private RecyclerView dataRecycler;
-    private DeskripsiTransaksiProdukAdapter adapter;
-    List<ProdukTemp> produkTemps = new ArrayList<>();
+    private DeskripsiTransaksiLayananAdapter adapter;
+    List<TempMultipleLayanan> produkTemps = new ArrayList<>();
     private boolean doubleBackToExitPressedOnce;
     private Handler mHandler = new Handler();
     String temp;
@@ -61,18 +63,21 @@ public class ShowDetailTransaksiProduk extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_deskirpsi_transaksi_produk);
-        if(PickCustomer.tempCustomer!=null && TempListPickProduk.produkTemp!=null){
+        setContentView(R.layout.activity_deskripsi_transaksi_layanan);
+        if(PickCustomer.tempCustomer!=null && TempListPickLayanan.layananList!=null && PickHewan.tempHewan!=null){
             PickCustomer.tempCustomer = null;
-            TempListPickProduk.produkTemp.clear();
+            PickHewan.tempHewan = null;
+            TempListPickLayanan.layananList.clear();
         }
         nama = (TextView) findViewById(R.id.tvNamaCustomer);
         alamat = (TextView) findViewById(R.id.tvAlamatCustomer);
         no_hp = (TextView) findViewById(R.id.tvnoHP);
         total_harga = (TextView) findViewById(R.id.tvTotal);
+        nama_hewan = (TextView) findViewById(R.id.tvnamaHewan);
+        jenis_hewan = (TextView) findViewById(R.id.tvjenisHewan);
         dataRecycler = (RecyclerView) findViewById(R.id.transaksi_produk_recycler);
-        RecyclerView.LayoutManager manager = new LinearLayoutManager(ShowDetailTransaksiProduk.this);
-        adapter = new DeskripsiTransaksiProdukAdapter(ShowDetailTransaksiProduk.this,produkTemps);
+        RecyclerView.LayoutManager manager = new LinearLayoutManager(ShowDetailTransaksiLayananActivity.this);
+        adapter = new DeskripsiTransaksiLayananAdapter(ShowDetailTransaksiLayananActivity.this,produkTemps);
         dataRecycler.setLayoutManager(manager);
         dataRecycler.setAdapter(adapter);
         aksi = (Button) findViewById(R.id.btnAksiTransaksiProduk);
@@ -118,14 +123,15 @@ public class ShowDetailTransaksiProduk extends AppCompatActivity {
 
         this.doubleBackToExitPressedOnce = true;
         PickCustomer.tempCustomer = null;
-        TempListPickProduk.produkTemp.clear();
+        PickHewan.tempHewan = null;
+        TempListPickLayanan.layananList.clear();
         mHandler.postDelayed(mRunnable, 2000);
         finish();
     }
 
     private void filter(String search){
-        List<ProdukTemp> example = new ArrayList<>();
-        for(ProdukTemp temp : produkTemps){
+        List<TempMultipleLayanan> example = new ArrayList<>();
+        for(TempMultipleLayanan temp : produkTemps){
             if (temp.getNama().toLowerCase().contains(search.toLowerCase())){
                 example.add(temp);
             }
@@ -134,7 +140,7 @@ public class ShowDetailTransaksiProduk extends AppCompatActivity {
     }
 
     private void showDialog() {
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ShowDetailTransaksiProduk.this);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(ShowDetailTransaksiLayananActivity.this);
 
         // set title dialog
         alertDialogBuilder.setTitle("Perubahan Data Customer");
@@ -146,7 +152,7 @@ public class ShowDetailTransaksiProduk extends AppCompatActivity {
                 .setCancelable(false)
                 .setPositiveButton("Edit",new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        Intent i = new Intent(ShowDetailTransaksiProduk.this,EditTransaksiProdukActivity.class);
+                        Intent i = new Intent(ShowDetailTransaksiLayananActivity.this,EditTransaksiLayananActivity.class);
                         i.putExtra("subtotal",temp);
                         i.putExtra("no_transaksi",getIntent().getStringExtra("no_transaksi"));
                         startActivity(i);
@@ -173,20 +179,21 @@ public class ShowDetailTransaksiProduk extends AppCompatActivity {
     }
 
     private void deleteTransaksi() {
-        final String url = "http://renzvin.com/kouvee/api/TransaksiProduk/delete";
+        final String url = "http://renzvin.com/kouvee/api/TransaksiLayanan/delete";
         VolleyMultiPartRequest volleyMultipartRequest = new VolleyMultiPartRequest(Request.Method.POST, url,
                 new Response.Listener<NetworkResponse>() {
                     @Override
                     public void onResponse(NetworkResponse response) {
-                        Toast.makeText(ShowDetailTransaksiProduk.this, "Sukses Menghapus Data", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ShowDetailTransaksiLayananActivity.this, "Sukses Menghapus Data", Toast.LENGTH_SHORT).show();
                         PickCustomer.tempCustomer = null;
-                        TempListPickProduk.produkTemp.clear();
+                        PickHewan.tempHewan = null;
+                        TempListPickLayanan.layananList.clear();
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(ShowDetailTransaksiProduk.this, "Gagal Menghapus Data", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ShowDetailTransaksiLayananActivity.this, "Gagal Menghapus Data", Toast.LENGTH_SHORT).show();
                     }
                 }) {
             @Override
@@ -199,10 +206,10 @@ public class ShowDetailTransaksiProduk extends AppCompatActivity {
                 return params;
             }
         };
-        Volley.newRequestQueue(ShowDetailTransaksiProduk.this).add(volleyMultipartRequest);
+        Volley.newRequestQueue(ShowDetailTransaksiLayananActivity.this).add(volleyMultipartRequest);
     }
     private void getProduk() {
-        String url = "http://renzvin.com/kouvee/api/TransaksiProduk?no_transaksi="+getIntent().getStringExtra("no_transaksi");
+        String url = "http://renzvin.com/kouvee/api/TransaksiLayanan?no_transaksi="+getIntent().getStringExtra("no_transaksi");
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
 
         StringRequest getRequest = new StringRequest(Request.Method.GET, url,
@@ -214,17 +221,15 @@ public class ShowDetailTransaksiProduk extends AppCompatActivity {
                             String produks = jsonObject.getString("data");
                             JSONArray jsonArray = new JSONArray(produks);
                             JSONObject jsonObject1 = jsonArray.getJSONObject(0);
-                            String item = jsonObject1.getString("produk");
+                            String item = jsonObject1.getString("layanan");
                             JSONArray jsonArray1 = new JSONArray(item);
                             for(int i = 0; i<jsonArray1.length(); i++) {
                                 JSONObject obj = jsonArray1.getJSONObject(i);
-                                ProdukTemp pro = new ProdukTemp(obj.getString("nama"),
-                                        obj.getInt("id"),obj.getInt("jumlah_beli"), obj.getInt("harga"));
+                                 TempMultipleLayanan pro = new TempMultipleLayanan(obj.getInt("id"),obj.getInt("harga"),obj.getString("nama"));
                                 produkTemps.add(pro);
-                                TempListPickProduk.produkTemp.add(pro);
+                                TempListPickLayanan.layananList.add(pro);
                             }
                             adapter.notifyDataSetChanged();
-                            String customer = jsonObject1.getString("customer");
                             JSONObject jsonobject2 = jsonObject1.getJSONObject("customer");
                             JSONObject object = jsonobject2;
                             nama.setText(object.getString("nama"));
@@ -233,11 +238,17 @@ public class ShowDetailTransaksiProduk extends AppCompatActivity {
                             if(PickCustomer.tempCustomer==null){
                                 PickCustomer.tempCustomer = new TempCustomer(object.getString("nama"),object.getString("alamat"),object.getString("no_hp"),object.getInt("id"));
                             }
-                            String total = jsonObject1.getString("pembayaran");
                             JSONObject jsonObject3 = jsonObject1.getJSONObject("pembayaran");
                             JSONObject object1 = jsonObject3;
                             total_harga.setText(Integer.toString(object1.getInt("total")));
                             temp = object1.getString("sub_total");
+                            JSONObject jsonobject4 = jsonObject1.getJSONObject("hewan");
+                            JSONObject object3 = jsonobject4;
+                            nama_hewan.setText(object3.getString("nama"));
+                            jenis_hewan.setText(object3.getString("jenis_hewan"));
+                            if(PickHewan.tempHewan==null){
+                                PickHewan.tempHewan = new TempHewan(object3.getInt("id"),object3.getInt("jenis_id"),object3.getInt("ukuran_id"),object3.getString("nama"),object3.getString("jenis_hewan"),object3.getString("ukuran_hewan"));
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -246,7 +257,7 @@ public class ShowDetailTransaksiProduk extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(ShowDetailTransaksiProduk.this,"Gagal Fetch Data",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ShowDetailTransaksiLayananActivity.this,"Gagal Fetch Data",Toast.LENGTH_SHORT).show();
                     }
                 });
         queue.add(getRequest);

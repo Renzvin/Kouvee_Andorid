@@ -16,6 +16,7 @@ import com.app.p3l.Activity.HewanActivity;
 import com.app.p3l.Activity.LayananActivity;
 import com.app.p3l.Activity.ProdukActivity;
 import com.app.p3l.Activity.SupplierActivity;
+import com.app.p3l.Activity.TransaksiLayananActivity;
 import com.app.p3l.Activity.TransaksiProdukActivity;
 import com.app.p3l.CRUDActivity.CreateTransaksiProdukActivity;
 import com.app.p3l.R;
@@ -65,6 +66,14 @@ public class DataFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getActivity(), TransaksiProdukActivity.class);
+                startActivity(i);
+            }
+        });
+        transaksi_layanan = (ImageButton) v.findViewById(R.id.button_trans_layanan);
+        transaksi_layanan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), TransaksiLayananActivity.class);
                 startActivity(i);
             }
         });

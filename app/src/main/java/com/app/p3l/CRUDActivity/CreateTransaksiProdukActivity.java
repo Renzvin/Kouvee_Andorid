@@ -124,20 +124,21 @@ public class CreateTransaksiProdukActivity extends AppCompatActivity {
             });
         }
         Button asd = (Button) findViewById(R.id.btnTambahTransaksiProduk);
-        asd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                produk = new TempMultipleProduct[TempListPickProduk.produkTemp.size()];
-                for(int i = 0;i<TempListPickProduk.produkTemp.size();i++){
-                    produk[i] = new TempMultipleProduct(TempListPickProduk.produkTemp.get(i).getId(),TempListPickProduk.produkTemp.get(i).getHarga());
+
+            asd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(TempListPickProduk.produkTemp!=null&&PickCustomer.tempCustomer!=null) {
+                        try {
+                            createTransaksiProduk();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        Toast.makeText(CreateTransaksiProdukActivity.this,"Anda harus memiliki customer dan produk untuk melakukan proses transaksi",Toast.LENGTH_SHORT).show();
+                    }
                 }
-                try {
-                    createTransaksiProduk();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+            });
         getSupportActionBar().hide();
     }
 
@@ -171,6 +172,8 @@ public class CreateTransaksiProdukActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         Toast.makeText(CreateTransaksiProdukActivity.this,"Sukses Membuat Data Produk", Toast.LENGTH_SHORT).show();
+                        PickCustomer.tempCustomer = null;
+                        TempListPickProduk.produkTemp.clear();
                     }
                 },
                 new Response.ErrorListener() {

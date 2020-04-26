@@ -11,31 +11,32 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.app.p3l.CRUDActivity.ShowDetailTransaksiLayananActivity;
 import com.app.p3l.CRUDActivity.ShowDetailTransaksiProduk;
 import com.app.p3l.DAO.TransaksiDAO;
 import com.app.p3l.R;
 
 import java.util.List;
 
-public class EditDeleteTransaksiProdukAdapter extends RecyclerView.Adapter<EditDeleteTransaksiProdukAdapter.TransaksiView>{
+public class EditDeleteTransaksiLayananAdapter extends RecyclerView.Adapter<EditDeleteTransaksiLayananAdapter.TransaksiView> {
     List<TransaksiDAO> transaksi_DAOS;
     private Context context;
 
-    public EditDeleteTransaksiProdukAdapter(List<TransaksiDAO> transaksi_DAOS, Context context) {
+    public EditDeleteTransaksiLayananAdapter(List<TransaksiDAO> transaksi_DAOS, Context context) {
         this.transaksi_DAOS = transaksi_DAOS;
         this.context = context;
     }
 
     @NonNull
     @Override
-    public EditDeleteTransaksiProdukAdapter.TransaksiView onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public EditDeleteTransaksiLayananAdapter.TransaksiView onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.adapter_transaksi,parent,false);
-        final EditDeleteTransaksiProdukAdapter.TransaksiView EditDeleteHolder = new EditDeleteTransaksiProdukAdapter.TransaksiView(view);
+        final EditDeleteTransaksiLayananAdapter.TransaksiView EditDeleteHolder = new EditDeleteTransaksiLayananAdapter.TransaksiView(view);
         return EditDeleteHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull EditDeleteTransaksiProdukAdapter.TransaksiView holder, int position) {
+    public void onBindViewHolder(@NonNull EditDeleteTransaksiLayananAdapter.TransaksiView holder, int position) {
         final TransaksiDAO row = transaksi_DAOS.get(position);
 //        int temp = row.getId();
         holder.no_transaksi.setText(row.getNo_transaksi());
@@ -44,7 +45,7 @@ public class EditDeleteTransaksiProdukAdapter extends RecyclerView.Adapter<EditD
         holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(context, ShowDetailTransaksiProduk.class);
+                Intent i = new Intent(context, ShowDetailTransaksiLayananActivity.class);
                 i.putExtra("no_transaksi",row.getNo_transaksi());
                 context.startActivity(i);
             }

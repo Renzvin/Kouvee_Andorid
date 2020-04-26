@@ -22,8 +22,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.app.p3l.Adapter.EditDeleteTransaksiLayananAdapter;
 import com.app.p3l.Adapter.EditDeleteTransaksiProdukAdapter;
-import com.app.p3l.CRUDActivity.CreateTransaksiProdukActivity;
+import com.app.p3l.CRUDActivity.CreateTransaksiLayananActivity;
 import com.app.p3l.DAO.TransaksiDAO;
 import com.app.p3l.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -35,9 +36,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CRUDTransaksiProdukFragment extends Fragment {
+public class CRUDTransaksiLayananFragment extends Fragment {
     private RecyclerView transaksiProdukRecycler;
-    private EditDeleteTransaksiProdukAdapter transaksiProdukAdapter;
+    private EditDeleteTransaksiLayananAdapter transaksiProdukAdapter;
     private FloatingActionButton create;
     List<TransaksiDAO> transaksi_DAOS = new ArrayList<>();
 
@@ -53,14 +54,14 @@ public class CRUDTransaksiProdukFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         transaksiProdukRecycler =  (RecyclerView) getView().findViewById(R.id.floating_transaksi_produk_recycler);
         RecyclerView.LayoutManager manager = new LinearLayoutManager(getActivity().getApplicationContext());
-        transaksiProdukAdapter = new EditDeleteTransaksiProdukAdapter(transaksi_DAOS, getContext());
+        transaksiProdukAdapter = new EditDeleteTransaksiLayananAdapter(transaksi_DAOS, getContext());
         transaksiProdukRecycler.setLayoutManager(manager);
         transaksiProdukRecycler.setAdapter(transaksiProdukAdapter);
         create = (FloatingActionButton) getView().findViewById(R.id.create_transaksi_produk);
         create.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity().getApplicationContext(), CreateTransaksiProdukActivity.class);
+                Intent intent = new Intent(getActivity().getApplicationContext(), CreateTransaksiLayananActivity.class);
                 startActivity(intent);
             }
         });
@@ -96,7 +97,7 @@ public class CRUDTransaksiProdukFragment extends Fragment {
     }
 
     private void getTransaksi() {
-        String url = "http://renzvin.com/kouvee/api/TransaksiProduk";
+        String url = "http://renzvin.com/kouvee/api/TransaksiLayanan";
         RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
         StringRequest getRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {

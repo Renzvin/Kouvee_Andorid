@@ -128,6 +128,27 @@
         <activity android:name=".CRUDActivity.PickProdukActivity">
 
         </activity>
+        <activity android:name=".CRUDActivity.EditTransaksiProdukActivity">
+
+        </activity>
+        <activity android:name=".CRUDActivity.CreateTransaksiLayananActivity">
+
+        </activity>
+        <activity android:name=".Activity.TransaksiLayananActivity">
+
+        </activity>
+        <activity android:name=".CRUDActivity.ShowDetailTransaksiLayananActivity">
+
+        </activity>
+        <activity android:name=".CRUDActivity.EditTransaksiLayananActivity">
+
+        </activity>
+        <activity android:name=".CRUDActivity.PickLayananActivity">
+
+        </activity>
+        <activity android:name=".CRUDActivity.PickHewanActivity">
+
+        </activity>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

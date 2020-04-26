@@ -145,8 +145,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         this.doubleBackToExitPressedOnce = true;
-        Toast.makeText(this, "Please click back again to exit and logout", Toast.LENGTH_SHORT).show();
-
+        Toast.makeText(this, "Please click back again to exit", Toast.LENGTH_SHORT).show();
         mHandler.postDelayed(mRunnable, 2000);
         finish();
     }

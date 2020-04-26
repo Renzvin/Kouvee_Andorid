@@ -1,6 +1,6 @@
 package com.app.p3l.DAO;
 
-public class Transaksi_ProdukDAO {
+public class TransaksiDAO {
     String no_transaksi, tanggal, status;
     int id_transaksi, customer_id, cs_id, pegawai_id, kasir_id;
 
@@ -68,7 +68,7 @@ public class Transaksi_ProdukDAO {
         this.kasir_id = kasir_id;
     }
 
-    public Transaksi_ProdukDAO(String no_transaksi, String tanggal, String status, int id_transaksi, int customer_id, int cs_id, int pegawai_id) {
+    public TransaksiDAO(String no_transaksi, String tanggal, String status, int id_transaksi, int customer_id, int cs_id, int pegawai_id) {
         this.no_transaksi = no_transaksi;
         this.tanggal = tanggal;
         this.status = status;

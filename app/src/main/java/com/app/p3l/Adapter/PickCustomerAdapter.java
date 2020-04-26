@@ -49,8 +49,6 @@ public class PickCustomerAdapter extends RecyclerView.Adapter<PickCustomerAdapte
             @Override
             public void onClick(View view) {
                 PickCustomer.tempCustomer = new TempCustomer(row.getNama(),row.getAlamat(),row.getNo_hp(),row.getId());
-                Intent i = new Intent(context, CreateTransaksiProdukActivity.class);
-                context.startActivity(i);
                 ((PickCustomerActivity)context).finish();
             }
         });
