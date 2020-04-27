@@ -1,9 +1,12 @@
 package com.app.p3l.Activity;
 
+import android.app.ActivityManager;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -12,6 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -24,6 +28,10 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.app.p3l.R;
 import com.app.p3l.Temporary.TemporaryIdPegawai;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 import org.json.JSONObject;
 
@@ -43,6 +51,7 @@ public class LoginActivity extends AppCompatActivity {
     private Handler mHandler = new Handler();
     private Animation topAnim,botAnim;
     private CircleImageView profile;
+    private static final String TAG = "LoginActivity";
 
     String status = "-";
     String data = "-";
@@ -55,6 +64,10 @@ public class LoginActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(this, instanceIdResult -> {
+            String newToken = instanceIdResult.getToken();
+            Log.e("newToken", newToken);
+        });
 
         topAnim= AnimationUtils.loadAnimation(this,R.anim.top_animation);
         botAnim= AnimationUtils.loadAnimation(this,R.anim.bottom_animation);
@@ -83,6 +96,7 @@ public class LoginActivity extends AppCompatActivity {
         txtsignin.setAnimation(botAnim);
 
         getSupportActionBar().hide();
+
     }
 
     private void progDialog() {

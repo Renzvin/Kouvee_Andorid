@@ -211,11 +211,9 @@ public class ShowDetailTransaksiProduk extends AppCompatActivity {
                     public void onResponse(String response) {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-                            String produks = jsonObject.getString("data");
-                            JSONArray jsonArray = new JSONArray(produks);
+                            JSONArray jsonArray = new JSONArray(jsonObject.getString("data"));
                             JSONObject jsonObject1 = jsonArray.getJSONObject(0);
-                            String item = jsonObject1.getString("produk");
-                            JSONArray jsonArray1 = new JSONArray(item);
+                            JSONArray jsonArray1 = new JSONArray(jsonObject1.getString("produk"));
                             for(int i = 0; i<jsonArray1.length(); i++) {
                                 JSONObject obj = jsonArray1.getJSONObject(i);
                                 ProdukTemp pro = new ProdukTemp(obj.getString("nama"),
@@ -224,7 +222,6 @@ public class ShowDetailTransaksiProduk extends AppCompatActivity {
                                 TempListPickProduk.produkTemp.add(pro);
                             }
                             adapter.notifyDataSetChanged();
-                            String customer = jsonObject1.getString("customer");
                             JSONObject jsonobject2 = jsonObject1.getJSONObject("customer");
                             JSONObject object = jsonobject2;
                             nama.setText(object.getString("nama"));
@@ -233,7 +230,6 @@ public class ShowDetailTransaksiProduk extends AppCompatActivity {
                             if(PickCustomer.tempCustomer==null){
                                 PickCustomer.tempCustomer = new TempCustomer(object.getString("nama"),object.getString("alamat"),object.getString("no_hp"),object.getInt("id"));
                             }
-                            String total = jsonObject1.getString("pembayaran");
                             JSONObject jsonObject3 = jsonObject1.getJSONObject("pembayaran");
                             JSONObject object1 = jsonObject3;
                             total_harga.setText(Integer.toString(object1.getInt("total")));
