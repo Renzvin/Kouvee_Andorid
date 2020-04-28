@@ -144,17 +144,16 @@
 
     <Button
         android:id="@+id/create_date"
-        android:layout_width="12dp"
-        android:layout_height="11dp"
+        android:layout_width="18dp"
+        android:layout_height="19dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/chevron_thin_right_"
-        android:rotation="90"
+        android:background="@drawable/ic_date_range_black_24dp"
         android:text=""
         app:layout_constraintBottom_toTopOf="@+id/spinner_jenis"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.59"
+        app:layout_constraintHorizontal_bias="0.609"
         app:layout_constraintStart_toEndOf="@+id/create_tanggal_lahir"
         app:layout_constraintTop_toBottomOf="@+id/create_nama_hewan"
-        app:layout_constraintVertical_bias="0.32" />
+        app:layout_constraintVertical_bias="0.1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

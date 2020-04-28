@@ -7,6 +7,12 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
+    <string-array name="satuan">
+        <item>Pack</item>
+        <item>Botol</item>
+        <item>Tablet</item>
+    </string-array>
+    
     <string name="home_second">Produk</string>
     <string name="tab_text_1">Buat</string>
     <string name="tab_text_2">Ubah</string>
@@ -20,7 +26,7 @@
     <string name="sub4">Supplier</string>
     <string name="sub5">Transaksi Produk</string>
     <string name="sub6">Transaksi Layanan</string>
-
+    <string name="count">i++</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string-array name="kategori_produk">

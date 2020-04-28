@@ -1,5 +1,7 @@
 package com.app.p3l.DAO;
 
+import java.util.List;
+
 public class ProdukDAO {
     String nama,link_gambar,deleted_at,created_at,edited_at;
     int stock,harga,kategori_id,id;
@@ -74,6 +76,10 @@ public class ProdukDAO {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public void getArrayList(List<ProdukDAO> produk){
+        produk.add(new ProdukDAO(getNama(),getLink_gambar(),getDeleted_at(),getCreated_at(),getEdited_at(),getStock(),getHarga(),getKategori_id(),getId()));
     }
 
     public ProdukDAO(String nama, String link_gambar, String deleted_at, String created_at, String edited_at, int stock, int harga, int kategori_id, int id) {
