@@ -9,7 +9,7 @@
         android:id="@+id/nav_pemesanan"
         android:name="com.app.p3l.ui.pemesanan.PemesananFragment"
         android:label="Pemesanan"
-        tools:layout="@layout/fragment_edit_delete_pemesanan" />
+        tools:layout="@layout/fragment_pemesanan" />
     <fragment
         android:id="@+id/nav_produk"
         android:name="com.app.p3l.ui.produk.ProdukFragment"

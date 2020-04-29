@@ -11,28 +11,24 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
 
-import com.app.p3l.Adapter.SectionCustomerPagerAdapter;
-import com.app.p3l.Adapter.SectionPemesananPagerAdapter;
 import com.app.p3l.R;
 
 public class PemesananFragment extends Fragment {
-    private RecyclerView pemesananRecycler;
+    private PemesananViewModel pemesananViewModel;
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v =  inflater.inflate(R.layout.view_pager, container, false);
-        return v;
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        SectionPemesananPagerAdapter sectionsPagerAdapter = new SectionPemesananPagerAdapter(getActivity().getApplicationContext(),getChildFragmentManager());
-        ViewPager viewPager = getView().findViewById(R.id.view_pager);
-        viewPager.setAdapter(sectionsPagerAdapter);
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
+        pemesananViewModel =
+                ViewModelProviders.of(this).get(PemesananViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_pemesanan, container, false);
+        final TextView textView = root.findViewById(R.id.text_pemesanan);
+        pemesananViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(@Nullable String s) {
+                textView.setText(s);
+            }
+        });
+        return root;
     }
 }

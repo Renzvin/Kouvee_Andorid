@@ -58,10 +58,6 @@
             android:label="Buat Data Supplier">
 
         </activity>
-        <activity android:name=".CRUDActivity.CreateAddProdukActivity"
-            android:label="Buat Data Pemesanan Produk">
-
-        </activity>
         <activity android:name=".CRUDActivity.EditProdukActivity"
             android:label="Ubah Data Produk">
 
@@ -121,12 +117,6 @@
             android:label="Edit Data Customer">
 
         </activity>
-
-        <activity android:name=".CRUDActivity.EditAddProdukActivity"
-            android:label="Edit Data Pemesanan">
-
-        </activity>
-      
         <activity android:name=".CRUDActivity.CreateTransaksiProdukActivity">
 
         </activity>
@@ -163,17 +153,6 @@
         <activity android:name=".CRUDActivity.PickHewanActivity">
 
         </activity>
-      
-       <provider
-            android:authorities="com.app.p3l"
-            android:exported="false"
-            android:grantUriPermissions="true"
-            android:name="androidx.core.content.FileProvider">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
-        </provider>
-        
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
@@ -193,5 +172,5 @@
         </service>
 
     </application>
-    
+
 </manifest>
