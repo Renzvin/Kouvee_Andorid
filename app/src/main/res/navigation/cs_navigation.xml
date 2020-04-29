@@ -29,4 +29,9 @@
         android:name="com.app.p3l.ui.Logout.Logout"
         android:label="Logout"
         tools:layout="@layout/fragment_logout" />
+    <fragment
+        android:id="@+id/cs_transaksi"
+        android:name="com.app.p3l.ui.transaksi_cs.cs_transaksi"
+        android:label="Transaksi"
+        tools:layout="@layout/fragment_cs_transaksi" />
 </navigation>

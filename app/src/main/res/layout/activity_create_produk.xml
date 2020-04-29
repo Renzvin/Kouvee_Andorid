@@ -21,7 +21,7 @@
         app:layout_constraintHorizontal_bias="0.543"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner_produk"
-        app:layout_constraintVertical_bias="0.391" />
+        app:layout_constraintVertical_bias="0.383" />
 
     <ImageButton
         android:id="@+id/P_foto"

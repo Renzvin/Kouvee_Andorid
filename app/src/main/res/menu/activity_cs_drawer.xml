@@ -21,8 +21,13 @@
             android:icon="@drawable/customer"
             android:title="Customer" />
         <item
+            android:id="@+id/cs_transaksi"
+            android:icon="@drawable/buttontransaksiproduk"
+            android:title="Transaksi"/>
+        <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_arrow_back_black_24dp"
             android:title="Logout"/>
+
     </group>
 </menu>

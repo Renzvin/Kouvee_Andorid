@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal">
+            <ImageButton
+                android:id="@+id/button_pilih_hewan"
+                android:layout_width="108dp"
+                android:layout_height="112dp"
+                android:layout_margin="50dp"
+                android:background="@drawable/button_shape"
+                android:scaleType="center"
+                android:src="@drawable/buttonukuranhewan"
+                android:text="Pilih Produk"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal">
+            <ImageButton
+                android:id="@+id/button_pilih_customer"
+                android:layout_width="108dp"
+                android:layout_height="112dp"
+                android:layout_margin="50dp"
+                android:background="@drawable/button_shape"
+                android:scaleType="center"
+                android:src="@drawable/customer"
+                android:text="Pilih Customer" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center">
+        <ImageButton
+            android:id="@+id/button_pilih_layanan"
+            android:layout_width="108dp"
+            android:layout_height="112dp"
+            android:layout_margin="50dp"
+            android:background="@drawable/button_shape"
+            android:scaleType="center"
+            android:src="@drawable/buttonlayanan"
+            android:text="Pilih Produk"/>
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_behavior = "@string/bottom_sheet_behavior"
+        app:behavior_hideable = "false"
+        app:behavior_peekHeight = "55dp"
+        android:id="@+id/test"
+        android:background="#F3C7DB">
+
+        <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:orientation="vertical"
+            android:id="@+id/bottom_transaksi_produk"
+            android:padding="10dp"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="-187dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total Harga                                                       : " />
+
+                <TextView
+                    android:id="@+id/tvTotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="temp harga" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="3dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nama Customer              : " />
+
+                <TextView
+                    android:id="@+id/tvNamaCustomer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="temp nama" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="9dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Alamat Customer            : " />
+
+                <TextView
+                    android:id="@+id/tvAlamatCustomer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="temp alamat" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="116dp"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="-26dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nama Hewan                    : " />
+
+                <TextView
+                    android:id="@+id/tvnamaHewan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="temp nama_hewan" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="144dp"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="9dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Jenis Hewan                     : " />
+
+                <TextView
+                    android:id="@+id/tvjenisHewan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="temp jenis_hewan" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearHP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="88dp"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nomor Handphome        : " />
+
+                <TextView
+                    android:id="@+id/tvnoHP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="temp noHP" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/search_bar"
+                android:layout_width="392dp"
+                android:layout_height="36dp"
+                android:layout_marginTop="64dp"
+                android:drawableLeft="@drawable/places_ic_search"
+                android:hint="Cari berdasarkan nama"
+                android:textSize="14sp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/linearHP" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/transaksi_produk_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="44dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/search_bar"
+                app:layout_constraintVertical_bias="0.0"/>
+
+            <Button
+                android:id="@+id/btnCreateTransaksiLayanan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/button_shape"
+                android:fontFamily="@font/amaranth_bold"
+                android:text="Aksi"
+                android:textAllCaps="false"
+                android:textColor="#ff9b9b"
+                android:textSize="22sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/transaksi_produk_recycler"
+                app:layout_constraintVertical_bias="0.046"
+                tools:layout_editor_absoluteX="16dp" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
