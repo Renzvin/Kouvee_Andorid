@@ -34,7 +34,6 @@ import com.app.p3l.CRUDActivity.CreateHewanActivity;
 import com.app.p3l.CRUDActivity.CreateProdukActivity;
 import com.app.p3l.DAO.ProdukDAO;
 import com.app.p3l.R;
-import com.app.p3l.ui.produk.ProdukFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 
@@ -50,7 +49,6 @@ public class CRUDProdukFragment extends Fragment  {
     private RecyclerView produkRecycler;
     private EditDeleteProdukAdapter produkAdapter;
     private FloatingActionButton create;
-    private ProdukFragment ProdukObject = new ProdukFragment();
     List<ProdukDAO> produk = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -61,6 +59,7 @@ public class CRUDProdukFragment extends Fragment  {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        getProduk();
         produkRecycler =  (RecyclerView) getView().findViewById(R.id.produk_recycler);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity().getApplicationContext(),3);
         produkAdapter = new EditDeleteProdukAdapter(produk,getContext());
@@ -91,7 +90,7 @@ public class CRUDProdukFragment extends Fragment  {
                 filter(s.toString());
             }
         });
-        ProdukObject.getProduk();
+        getProduk();
     }
 
     private void filter(String search){
@@ -104,4 +103,38 @@ public class CRUDProdukFragment extends Fragment  {
         produkAdapter.filterList(example);
     }
 
+    private void getProduk() {
+        String url = "http://renzvin.com/kouvee/api/Produk/";
+        RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
+
+        StringRequest getRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String produks = jsonObject.getString("data");
+                            JSONArray jsonArray = new JSONArray(produks);
+                            for(int i = 0; i<jsonArray.length(); i++) {
+                                JSONObject obj = jsonArray.getJSONObject(i);
+                                if (obj.getString("deleted_at").equalsIgnoreCase("null")) {
+                                    ProdukDAO pro = new ProdukDAO(obj.getString("nama"),
+                                            obj.getString("link_gambar"),obj.getString("deleted_at"),obj.getString("created_at"),obj.getString("updated_at"),obj.getInt("stock"), obj.getInt("harga"),obj.getInt("kategori_id"),obj.getInt("id"));
+                                    produk.add(pro);
+                                }
+                            }
+                            produkAdapter.notifyDataSetChanged();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getActivity().getApplicationContext(),"Gagal Fetch Data",Toast.LENGTH_SHORT).show();
+                    }
+                });
+        queue.add(getRequest);
+    }
 }

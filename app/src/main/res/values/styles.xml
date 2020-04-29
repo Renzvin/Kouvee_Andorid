@@ -8,18 +8,6 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="ExtendedFAB" parent="Theme.MaterialComponents.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">#7B2356</item>
-        <item name="colorPrimaryDark">#F3C7DB</item>
-        <item name="colorAccent">@color/colorAccent</item>
-    </style>
-
-    <style name="AppTheme.CustomTheme">
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowCloseOnTouchOutside">true</item>
-    </style>
-    
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

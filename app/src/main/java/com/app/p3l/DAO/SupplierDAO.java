@@ -3,10 +3,6 @@ package com.app.p3l.DAO;
 public class SupplierDAO {
     String nama,alamat,kota,no_hp;
     int id;
-
-    public SupplierDAO() {
-    }
-
     public String getNama() {
         return nama;
     }
