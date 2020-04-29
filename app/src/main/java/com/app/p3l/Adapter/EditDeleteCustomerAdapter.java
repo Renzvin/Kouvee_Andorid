@@ -110,7 +110,7 @@ public class EditDeleteCustomerAdapter extends RecyclerView.Adapter<EditDeleteCu
 
     private void deleteCustomer(int temp, int position) {
         customer.remove(position);
-        final String url = "http://renzvin.com/kouvee/api/customer/delete/";
+        final String url = "http://renzvin.com/kouvee/api/customer/delete/detail";
         RequestQueue queue = Volley.newRequestQueue(context.getApplicationContext());
         StringRequest post = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {

@@ -40,7 +40,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProdukFragment extends Fragment  {
+public class ProdukFragment extends Fragment{
 
     private RecyclerView produkRecycler;
     private ProdukAdapter produkAdapter;
@@ -54,7 +54,6 @@ public class ProdukFragment extends Fragment  {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        getProduk();
         produkRecycler =  (RecyclerView) getView().findViewById(R.id.recycler);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity().getApplicationContext(),3);
         produkAdapter = new ProdukAdapter(produk,getContext());
@@ -90,7 +89,7 @@ public class ProdukFragment extends Fragment  {
         produkAdapter.filterList(example);
     }
 
-    private void getProduk() {
+    public void getProduk() {
         String url = "http://renzvin.com/kouvee/api/Produk/";
         RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
 
