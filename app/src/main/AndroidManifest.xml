@@ -117,7 +117,10 @@
             android:label="Edit Data Customer">
 
         </activity>
+        <activity android:name=".CRUDActivity.EditAddProdukActivity"
+            android:label="Edit Data Pemesanan">
 
+        </activity>
         <provider
             android:authorities="com.app.p3l"
             android:exported="false"

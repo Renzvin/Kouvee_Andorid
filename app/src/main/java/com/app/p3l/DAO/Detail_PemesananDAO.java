@@ -3,12 +3,33 @@ package com.app.p3l.DAO;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Detail_PemesananDAO {
+import java.io.Serializable;
+
+public class Detail_PemesananDAO implements Parcelable {
     String satuan,produk_name,gambar;
     int produk_id,jumlah;
 
     public Detail_PemesananDAO(){
     }
+
+    protected Detail_PemesananDAO(Parcel in) {
+        satuan = in.readString();
+        produk_name = in.readString();
+        produk_id = in.readInt();
+        jumlah = in.readInt();
+    }
+
+    public static final Creator<Detail_PemesananDAO> CREATOR = new Creator<Detail_PemesananDAO>() {
+        @Override
+        public Detail_PemesananDAO createFromParcel(Parcel in) {
+            return new Detail_PemesananDAO(in);
+        }
+
+        @Override
+        public Detail_PemesananDAO[] newArray(int size) {
+            return new Detail_PemesananDAO[size];
+        }
+    };
 
     public String getSatuan() {
         return satuan;
@@ -61,4 +82,17 @@ public class Detail_PemesananDAO {
         this.jumlah=jumlah;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(satuan);
+        dest.writeString(produk_name);
+        dest.writeString(gambar);
+        dest.writeInt(produk_id);
+        dest.writeInt(jumlah);
+    }
 }
