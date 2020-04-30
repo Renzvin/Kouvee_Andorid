@@ -81,7 +81,7 @@ public class EditDeleteLayananAdapter extends RecyclerView.Adapter<EditDeleteLay
         // set pesan dari dialog
         alertDialogBuilder
                 .setMessage("Klik Back untuk kembali!")
-                .setIcon(R.drawable.paw)
+                .setIcon(R.drawable.logo)
                 .setCancelable(false)
                 .setPositiveButton("Edit",new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {

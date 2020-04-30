@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
                         Notification builder = new NotificationCompat.Builder(MainActivity.this,CHANNEL_ID)
-                                .setSmallIcon(R.drawable.paw)
+                                .setSmallIcon(R.drawable.logo)
                                 .setContentTitle("Ada Stock Produk Yang mulai Menipis")
                                 .setContentText(temp)
                                 .setStyle(new NotificationCompat.BigTextStyle().bigText(temp))
