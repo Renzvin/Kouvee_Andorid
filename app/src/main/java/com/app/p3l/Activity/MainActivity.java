@@ -135,7 +135,6 @@ public class MainActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(MainActivity.this,"Gagal Fetch Data",Toast.LENGTH_SHORT).show();
                     }
                 });
         queue.add(getRequest);
