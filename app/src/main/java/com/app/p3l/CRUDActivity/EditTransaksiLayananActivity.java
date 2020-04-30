@@ -39,7 +39,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EditTransaksiLayananActivity extends AppCompatActivity {
-    ImageButton pilih_customer,pilih_layanan,pilih_hewan;
+    ImageButton pilih_customer,pilih_layanan;
     BottomSheetBehavior bottomSheetBehavior;
     TempMultipleProduct produk[];
     @Override

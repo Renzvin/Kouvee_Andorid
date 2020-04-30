@@ -34,6 +34,7 @@ import com.app.p3l.CRUDActivity.CreateHewanActivity;
 import com.app.p3l.CRUDActivity.CreateProdukActivity;
 import com.app.p3l.DAO.ProdukDAO;
 import com.app.p3l.R;
+import com.app.p3l.ui.produk.ProdukFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 
@@ -49,6 +50,7 @@ public class CRUDProdukFragment extends Fragment  {
     private RecyclerView produkRecycler;
     private EditDeleteProdukAdapter produkAdapter;
     private FloatingActionButton create;
+    private ProdukFragment ProdukObject = new ProdukFragment();
     List<ProdukDAO> produk = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -59,7 +61,6 @@ public class CRUDProdukFragment extends Fragment  {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        getProduk();
         produkRecycler =  (RecyclerView) getView().findViewById(R.id.produk_recycler);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity().getApplicationContext(),3);
         produkAdapter = new EditDeleteProdukAdapter(produk,getContext());
@@ -103,7 +104,7 @@ public class CRUDProdukFragment extends Fragment  {
         produkAdapter.filterList(example);
     }
 
-    private void getProduk() {
+    public void getProduk() {
         String url = "http://renzvin.com/kouvee/api/Produk/";
         RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
 
@@ -137,4 +138,5 @@ public class CRUDProdukFragment extends Fragment  {
                 });
         queue.add(getRequest);
     }
+
 }

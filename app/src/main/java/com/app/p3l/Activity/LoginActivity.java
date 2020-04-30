@@ -53,6 +53,7 @@ public class LoginActivity extends AppCompatActivity {
     private CircleImageView profile;
     private static final String TAG = "LoginActivity";
 
+    String Token;
     String status = "-";
     String data = "-";
     String role = "-";
@@ -64,10 +65,6 @@ public class LoginActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(this, instanceIdResult -> {
-            String newToken = instanceIdResult.getToken();
-            Log.e("newToken", newToken);
-        });
 
         topAnim= AnimationUtils.loadAnimation(this,R.anim.top_animation);
         botAnim= AnimationUtils.loadAnimation(this,R.anim.bottom_animation);
@@ -110,6 +107,8 @@ public class LoginActivity extends AppCompatActivity {
             doubleBackToExitPressedOnce = false;
         }
     };
+
+
 
     private void waitingResponse() {
         Handler handler = new Handler();
@@ -163,7 +162,6 @@ public class LoginActivity extends AppCompatActivity {
         mHandler.postDelayed(mRunnable, 2000);
         finish();
     }
-
 
     private void loginUser(final String username, final String password) {
         final String url = "http://renzvin.com/kouvee/api/Pegawai/login/";

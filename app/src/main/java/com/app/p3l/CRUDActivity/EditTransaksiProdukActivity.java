@@ -47,16 +47,7 @@ public class EditTransaksiProdukActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_transaksi_produk);
-        pilih_customer = (ImageButton) findViewById(R.id.button_pilih_customer);
         pilih_produk = (ImageButton) findViewById(R.id.button_pilih_produk);
-
-        pilih_customer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(EditTransaksiProdukActivity.this,PickCustomerActivity.class);
-                startActivity(i);
-            }
-        });
 
         pilih_produk.setOnClickListener(new View.OnClickListener() {
             @Override

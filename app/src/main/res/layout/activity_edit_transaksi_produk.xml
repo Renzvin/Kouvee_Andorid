@@ -9,7 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_gravity="center">
         <LinearLayout
             android:layout_width="wrap_content"
@@ -25,22 +25,6 @@
                 android:scaleType="center"
                 android:src="@drawable/buttonproduk"
                 android:text="Pilih Produk"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center_horizontal">
-            <ImageButton
-                android:id="@+id/button_pilih_customer"
-                android:layout_width="108dp"
-                android:layout_height="112dp"
-                android:layout_margin="50dp"
-                android:background="@drawable/button_shape"
-                android:scaleType="center"
-                android:src="@drawable/customer"
-                android:text="Pilih Customer" />
         </LinearLayout>
     </LinearLayout>
 
