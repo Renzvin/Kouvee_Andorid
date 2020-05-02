@@ -1,11 +1,28 @@
 package com.app.p3l.DAO;
 
+import android.content.Context;
+
+import com.app.p3l.R;
+
+import java.io.File;
 import java.util.Date;
 
 public class PemesananDAO {
-    String nomor_po;
-    Date tanggal_pesan,tanggal_masuk;
-    int supplier_id;
+    String nomor_po,supplier_name,status;
+    Date tanggal_pesan;
+    Date tanggal_masuk;
+    int supplier_id,id;
+
+    public static String getAppPath(Context applicationContext) {
+        File dir = new File(android.os.Environment.getExternalStorageDirectory()
+                +File.separator
+                + applicationContext.getResources().getString(R.string.app_name)
+                +File.separator
+        );
+        if(!dir.exists())
+            dir.mkdir();
+        return dir.getPath() + File.separator;
+    }
 
     public String getNomor_po() {
         return nomor_po;
@@ -37,5 +54,34 @@ public class PemesananDAO {
 
     public void setSupplier_id(int supplier_id) {
         this.supplier_id = supplier_id;
+    }
+
+    public String getSupplier_name() {
+        return supplier_name;
+    }
+
+    public void setSupplier_name(int supplier_id) {
+        this.supplier_name = supplier_name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getStatus(){return status;}
+
+    public void setStatus(String status){this.status=status;}
+
+    public PemesananDAO(int supplier_id, String nomor_po,Date tanggal_pesan, String supplier_name, int id,String status) {
+        this.supplier_id=supplier_id;
+        this.supplier_name=supplier_name;
+        this.tanggal_pesan=tanggal_pesan;
+        this.nomor_po=nomor_po;
+        this.id=id;
+        this.status=status;
     }
 }

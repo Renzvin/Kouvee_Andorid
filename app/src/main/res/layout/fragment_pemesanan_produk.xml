@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/scrollView_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/linearlayout_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Supplier_name"
+            android:textSize="12dp"
+            android:textStyle="bold"
+            android:id="@+id/pp_nama_supplier"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nomor PO"
+            android:textSize="12dp"
+            android:textStyle="bold"
+            android:id="@+id/pp_nomor_po"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Status"
+            android:textSize="12dp"
+            android:textStyle="bold"
+            android:id="@+id/pp_status"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text_nama_produk"
+                android:textSize="12dp"
+                android:textStyle="bold"
+                android:textColor="#ff9b9b"
+                android:text="Nama Produk"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text_jumlah"
+                android:layout_marginLeft="120dp"
+                android:textSize="12dp"
+                android:textStyle="bold"
+                android:textColor="#ff9b9b"
+                android:text="Jumlah"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text_satuan"
+                android:layout_marginLeft="80dp"
+                android:textSize="12dp"
+                android:textStyle="bold"
+                android:textColor="#ff9b9b"
+                android:text="Satuan"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/pemesanan_produk_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tanggal Pesan"
+                android:textSize="12dp"
+                android:textStyle="bold"
+                android:id="@+id/text_tanggal_pesan"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tanggal Pesan"
+                android:textSize="12dp"
+                android:textStyle="bold"
+                android:id="@+id/pp_tanggal_pesan"/>
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="360dp"
+            android:layout_height="6dp"
+            android:src="@drawable/border_underline" />
+    </LinearLayout>
+
+</ScrollView>

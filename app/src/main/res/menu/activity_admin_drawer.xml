@@ -25,10 +25,6 @@
             android:icon="@drawable/laporan"
             android:title="Pemesanan" />
         <item
-            android:id="@+id/nav_struk"
-            android:icon="@drawable/struk"
-            android:title="Struk" />
-        <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_arrow_back_black_24dp"
             android:title="Logout"/>

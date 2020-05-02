@@ -136,6 +136,14 @@
         <activity android:name=".CRUDActivity.EditTransaksiLayananActivity"
             android:label="Edit Transaksi Layanan">
         </activity>
+        <activity android:name=".CRUDActivity.EditAddProdukActivity"
+            android:label="Edit Data Pemesanan">
+
+        </activity>
+        <activity android:name=".CRUDActivity.CreateAddProdukActivity"
+            android:label="Create Data Pemesanan">
+
+        </activity>
 
         <meta-data
             android:name="preloaded_fonts"

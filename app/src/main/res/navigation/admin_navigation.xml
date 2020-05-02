@@ -20,9 +20,6 @@
             android:id="@+id/action_HomeFragment_to_HomeSecondFragment"
             app:destination="@id/nav_home_second" />
         <action
-            android:id="@+id/action_nav_produk_to_nav_struk"
-            app:destination="@id/nav_struk" />
-        <action
             android:id="@+id/action_nav_produk_to_nav_customer"
             app:destination="@id/nav_customer" />
         <action
@@ -69,11 +66,6 @@
         android:name="com.app.p3l.ui.customer.CustomerFragment"
         android:label="Customer"
         tools:layout="@layout/view_pager" />
-    <fragment
-        android:id="@+id/nav_struk"
-        android:name="com.app.p3l.ui.struk.StrukFragment"
-        android:label="Struk"
-        tools:layout="@layout/fragment_struk" />
     <fragment
         android:id="@+id/nav_logout"
         android:name="com.app.p3l.ui.Logout.Logout"

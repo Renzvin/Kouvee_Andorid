@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <ImageView
+            android:id="@+id/add_produk_gambar"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/paw"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/add_produk_namaProduk"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="20dp"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:text="Nama Produk" />
+
+        <Spinner
+            android:id="@+id/add_produk_Satuan"
+            android:layout_width="115dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/add_produk_reset"
+                android:layout_width="match_parent"
+                android:layout_marginRight="10dp"
+                android:layout_height="26dp"
+                android:gravity="bottom"
+                android:src="@drawable/ic_delete_black_24dp" />
+
+            <Button
+                android:id="@+id/add_produk_kurang"
+                android:layout_marginTop="3dp"
+                android:layout_marginRight="5dp"
+                android:layout_width="15dp"
+                android:layout_height="16dp"
+                android:background="@drawable/ic_remove_black_24dp" />
+            <EditText
+                android:id="@+id/add_produk_jumlah"
+                android:layout_marginTop="1dp"
+                android:text="jumlah"
+                android:textSize="12dp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:background="@null"
+                android:layout_height="wrap_content"/>
+
+            <Button
+                android:id="@+id/add_produk_tambah"
+                android:layout_marginTop="3dp"
+                android:layout_marginLeft="5dp"
+                android:layout_width="15dp"
+                android:layout_height="16dp"
+                android:background="@drawable/ic_add_black_24dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>
