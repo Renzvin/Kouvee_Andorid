@@ -12,6 +12,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
@@ -25,7 +26,8 @@ import com.android.volley.toolbox.Volley;
 import com.app.p3l.DAO.Jenis_HewanDAO;
 import com.app.p3l.DAO.Ukuran_HewanDAO;
 import com.app.p3l.R;
-import com.app.p3l.Temporary.TemporaryIdPegawai;
+import com.app.p3l.Temporary.TemporaryRoleId;
+import com.app.p3l.ui.data.DataFragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -108,7 +110,7 @@ public class CreateHewanActivity extends AppCompatActivity implements DatePicker
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createHewan(nama.getText().toString(),temporary,kat2,kat1,Integer.toString(TemporaryIdPegawai.id));
+                createHewan(nama.getText().toString(),temporary,kat2,kat1,Integer.toString(TemporaryRoleId.id));
             }
         });
     }

@@ -20,11 +20,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.app.p3l.R;
-import com.app.p3l.Temporary.TemporaryIdPegawai;
+import com.app.p3l.Temporary.TemporaryRoleId;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -108,7 +109,7 @@ public class EditCustomerActivity extends AppCompatActivity implements DatePicke
                 params.put("tanggal_lahir", tanggal_lahir);
                 params.put("alamat", alamat);
                 params.put("no_hp", no_hp);
-                params.put("pegawai_id", Integer.toString(TemporaryIdPegawai.id));
+                params.put("pegawai_id", Integer.toString(TemporaryRoleId.id));
                 params.put("is_member", Integer.toString(is_member));
                 params.put("id",getIntent().getStringExtra("Cid"));
 

@@ -25,7 +25,7 @@ import com.android.volley.toolbox.Volley;
 import com.app.p3l.DAO.Jenis_HewanDAO;
 import com.app.p3l.DAO.Ukuran_HewanDAO;
 import com.app.p3l.R;
-import com.app.p3l.Temporary.TemporaryIdPegawai;
+import com.app.p3l.Temporary.TemporaryRoleId;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -110,7 +110,7 @@ public class EditHewanActivity extends AppCompatActivity implements DatePickerDi
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editHewan(nama.getText().toString(),temporary,kat2,kat1,Integer.toString(TemporaryIdPegawai.id));
+                editHewan(nama.getText().toString(),temporary,kat2,kat1,Integer.toString(TemporaryRoleId.id));
             }
         });
     }

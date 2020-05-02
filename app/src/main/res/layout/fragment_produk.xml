@@ -45,6 +45,7 @@
             android:textSize="10dp"
             tools:layout_editor_absoluteX="39dp"
             tools:layout_editor_absoluteY="83dp" />
+
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

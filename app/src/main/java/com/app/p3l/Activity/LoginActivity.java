@@ -1,8 +1,6 @@
 package com.app.p3l.Activity;
 
-import android.app.ActivityManager;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,7 +13,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -27,15 +24,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.app.p3l.R;
-import com.app.p3l.Temporary.TemporaryIdPegawai;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.InstanceIdResult;
+import com.app.p3l.Temporary.TemporaryRoleId;
 
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.json.JSONException;
@@ -51,7 +45,6 @@ public class LoginActivity extends AppCompatActivity {
     private Handler mHandler = new Handler();
     private Animation topAnim,botAnim;
     private CircleImageView profile;
-    private static final String TAG = "LoginActivity";
 
     String status = "-";
     String data = "-";
@@ -64,10 +57,6 @@ public class LoginActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(this, instanceIdResult -> {
-            String newToken = instanceIdResult.getToken();
-            Log.e("newToken", newToken);
-        });
 
         topAnim= AnimationUtils.loadAnimation(this,R.anim.top_animation);
         botAnim= AnimationUtils.loadAnimation(this,R.anim.bottom_animation);
@@ -96,7 +85,6 @@ public class LoginActivity extends AppCompatActivity {
         txtsignin.setAnimation(botAnim);
 
         getSupportActionBar().hide();
-
     }
 
     private void progDialog() {
@@ -121,20 +109,20 @@ public class LoginActivity extends AppCompatActivity {
                         Intent i = new Intent(LoginActivity.this,MainActivity.class);
                         i.putExtra("nama",nama);
                         i.putExtra("role",role);
-                        TemporaryIdPegawai.id = id;
+                        TemporaryRoleId.id = id;
                         startActivity(i);
                     } else if(role.equalsIgnoreCase("CS")){
                         Intent i = new Intent(LoginActivity.this,CSActivity.class);
                         i.putExtra("nama",nama);
                         i.putExtra("role",role);
-                        TemporaryIdPegawai.id = id;
+                        TemporaryRoleId.id = id;
                         startActivity(i);
                     } else{
-                        Toast.makeText(LoginActivity.this,"Role anda tidak dapat mengakses aplikasi ini",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this,"Role anda tidak jelas",Toast.LENGTH_SHORT).show();
                     }
                 }
                 else{
-                    Toast.makeText(LoginActivity.this, "Username / password salah", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Email / password salah", Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -159,7 +147,8 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         this.doubleBackToExitPressedOnce = true;
-        Toast.makeText(this, "Please click back again to exit", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Please click back again to exit and logout", Toast.LENGTH_SHORT).show();
+
         mHandler.postDelayed(mRunnable, 2000);
         finish();
     }

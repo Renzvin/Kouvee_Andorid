@@ -31,7 +31,7 @@ public class CSActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_cs_produk, R.id.nav_cs_layanan,R.id.nav_cs_customer,R.id.nav_cs_hewan,R.id.cs_transaksi,R.id.nav_logout)
+                R.id.nav_cs_produk, R.id.nav_cs_layanan,R.id.nav_cs_customer,R.id.nav_cs_hewan,R.id.nav_logout)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_cs_fragment);

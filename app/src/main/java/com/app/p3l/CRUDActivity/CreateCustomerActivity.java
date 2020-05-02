@@ -6,9 +6,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
@@ -19,12 +21,14 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.app.p3l.Adapter.EditDeleteCustomerAdapter;
 import com.app.p3l.R;
-import com.app.p3l.Temporary.TemporaryIdPegawai;
+import com.app.p3l.Temporary.TemporaryRoleId;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -103,7 +107,7 @@ public class CreateCustomerActivity extends AppCompatActivity implements DatePic
                 params.put("tanggal_lahir", tanggal_lahir);
                 params.put("alamat", alamat);
                 params.put("no_hp", no_hp);
-                params.put("pegawai_id", Integer.toString(TemporaryIdPegawai.id));
+                params.put("pegawai_id", Integer.toString(TemporaryRoleId.id));
                 params.put("is_member", Integer.toString(is_member));
 
                 return params;

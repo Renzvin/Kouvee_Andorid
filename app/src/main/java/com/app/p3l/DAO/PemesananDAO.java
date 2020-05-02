@@ -80,12 +80,11 @@ public class PemesananDAO {
 
     public void setStatus(String status){this.status=status;}
 
-    public PemesananDAO(int supplier_id, String nomor_po, String supplier_name, Date tanggal_pesan, Date tanggal_masuk, int id,String status) {
+    public PemesananDAO(int supplier_id, String nomor_po,Date tanggal_pesan, String supplier_name, int id,String status) {
         this.supplier_id=supplier_id;
         this.supplier_name=supplier_name;
-        this.nomor_po=nomor_po;
         this.tanggal_pesan=tanggal_pesan;
-        this.tanggal_masuk=tanggal_masuk;
+        this.nomor_po=nomor_po;
         this.id=id;
         this.status=status;
     }
